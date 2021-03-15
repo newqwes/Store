@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { extractResponsData, getToken } from '../utils/api';
 
 const instance = Axios.create({
-  baseURL: 'http://localhost:3005/api/',
+  baseURL: 'http://194-67-110-242.cloudvps.regruhosting.ru:3005/api/',
 });
 
 export const productAPI = {
