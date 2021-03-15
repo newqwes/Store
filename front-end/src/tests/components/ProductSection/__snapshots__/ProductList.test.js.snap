@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot ProductList snapshot 1`] = `
+<div
+  className="sc-fubCfw fZwJXC"
+>
+  <div
+    className="sc-gKsewC mHKxT"
+  >
+    <div
+      className="sc-bdfBwQ rXYsm"
+    >
+      <img
+        alt="Pizza"
+        src="https://image.com"
+      />
+    </div>
+    <div
+      className="sc-iBPRYJ jQRuul"
+    >
+      <span
+        className="sc-gsTCUz cakImO"
+        fontSize={19}
+        fontWeight={500}
+      >
+        Pizza
+      </span>
+      <span
+        className="sc-gsTCUz bcektt"
+        fontSize={12}
+        fontWeight={400}
+      >
+        none description
+      </span>
+      <div
+        className="sc-dlfnbm gnOvZw"
+        direction="row"
+      >
+        <span
+          className="sc-jSgupP dMmZuW"
+          fontSize={12}
+          fontWeight={500}
+        >
+          24
+          руб.
+        </span>
+        <select
+          className="sc-hKgILt dUcerc"
+          onChange={[Function]}
+        >
+          <option
+            key="250"
+            value={250}
+          >
+            250
+             
+            г
+          </option>
+        </select>
+        <button
+          className="sc-eCssSg hYdMsO"
+          onClick={[Function]}
+        >
+          В корзину
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+`;
