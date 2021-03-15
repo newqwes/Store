@@ -4,7 +4,9 @@
 2) docker ps -a
 3) docker exec -it XXXXX bash
 <br>
-XXXXX - name of docker container
 4) yarn migrate
+
+<br>
+XXXXX - name of docker container
 <br>
 done
