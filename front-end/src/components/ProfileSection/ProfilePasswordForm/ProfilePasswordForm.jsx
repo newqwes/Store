@@ -1,19 +1,15 @@
-/* eslint-disable no-nested-ternary */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import FONT_SIZE from '../../../constants/fontSize';
 import DIRECTION from '../../../constants/direction';
-import FONT_WEIGHT from '../../../constants/fontWeight';
 import THEME_VARIANT from '../../../constants/themeVariant';
 import { JUSTIFY_CONTENT } from '../../../constants/position';
 
 import Flex from '../../Flex';
-import Label from '../../Label';
 import InputField from '../../InputField';
 
-import { InputFieldContent, Submit, Message } from '../styled';
+import { InputFieldContent, Submit, Message, CustomLabel } from '../styled';
 
 class ProfilePasswordForm extends React.Component {
   static propTypes = {
@@ -29,36 +25,38 @@ class ProfilePasswordForm extends React.Component {
   };
 
   state = {
-    message: '',
+    statusMessage: '',
   };
 
-  handleChange = () => {
-    if (this.state.message) this.setState({ message: '' });
+  removeStatusMessage = () => {
+    const { statusMessage } = this.state;
+
+    if (statusMessage) this.setState({ statusMessage: '' });
+  };
+
+  handleClick = () => {
+    const { updateUser, handleSubmit, valid, reset } = this.props;
+
+    const statusMessage = valid ? 'Пароль успешно изменен!' : 'Ошибка! Попробуйте снова.';
+
+    this.setState({ statusMessage });
+
+    handleSubmit(updateUser)();
+    reset();
   };
 
   render() {
-    const { message } = this.state;
-
-    const { updateUser, handleSubmit, valid, reset, themeVariant } = this.props;
-
-    const handleClick = () => {
-      handleSubmit(updateUser)();
-
-      if (valid) this.setState({ message: 'Пароль успешно изменен!' });
-      else {
-        this.setState({ message: 'Ошибка! Попробуйте снова.' });
-        reset();
-      }
-    };
+    const { statusMessage } = this.state;
+    const { themeVariant } = this.props;
 
     return (
       <Flex direction={DIRECTION.column}>
-        <Label text='Изменение пароля' fontSize={FONT_SIZE.large} fontWeight={FONT_WEIGHT.bold} />
+        <CustomLabel>Изменение пароля</CustomLabel>
         <form>
           <Field
             type='password'
             name='password'
-            onChange={this.handleChange}
+            onChange={this.removeStatusMessage}
             label='Новый пароль'
             component={InputField}
             fieldStyle={InputFieldContent}
@@ -71,11 +69,11 @@ class ProfilePasswordForm extends React.Component {
             fieldStyle={InputFieldContent}
           />
           <Flex justifyContent={JUSTIFY_CONTENT.center} direction={DIRECTION.column}>
-            <Submit themeVariant={themeVariant} onClick={handleClick}>
+            <Submit themeVariant={themeVariant} onClick={this.handleClick}>
               Изменить
             </Submit>
 
-            <Message themeVariant={themeVariant}>{message}</Message>
+            <Message themeVariant={themeVariant}>{statusMessage}</Message>
           </Flex>
         </form>
       </Flex>

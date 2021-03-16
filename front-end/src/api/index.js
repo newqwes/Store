@@ -3,12 +3,20 @@ import Axios from 'axios';
 import { extractResponsData, getToken } from '../utils/api';
 
 const instance = Axios.create({
-  baseURL: 'http://194-67-110-242.cloudvps.regruhosting.ru:3005/api/',
+  baseURL: 'http://localhost:3005/api/',
 });
 
 export const productAPI = {
   getProductsList: async productType => {
     const respons = await instance.get(`products?type=${productType}`);
+
+    return extractResponsData(respons);
+  },
+
+  addProduct: async body => {
+    const respons = await instance.post('products', body, {
+      headers: { Authorization: getToken() },
+    });
 
     return extractResponsData(respons);
   },

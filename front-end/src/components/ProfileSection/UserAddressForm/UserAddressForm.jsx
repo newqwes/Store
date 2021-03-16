@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
-import { YMaps, Map } from 'react-yandex-maps';
 
 import Flex from '../../Flex';
-import Label from '../../Label';
 import InputField from '../../InputField';
 
-import FONT_SIZE from '../../../constants/fontSize';
 import DIRECTION from '../../../constants/direction';
-import FONT_WEIGHT from '../../../constants/fontWeight';
 
-import { InputFieldContent } from '../styled';
+import { CustomLabel, InputFieldContent } from '../styled';
 
 class UserAddressForm extends React.Component {
   static propTypes = {
@@ -25,7 +21,7 @@ class UserAddressForm extends React.Component {
 
     return (
       <Flex direction={DIRECTION.column}>
-        <Label text='Ваш адрес' fontSize={FONT_SIZE.large} fontWeight={FONT_WEIGHT.bold} />
+        <CustomLabel>Ваш адрес</CustomLabel>
         <form>
           <Field
             type='text'
@@ -72,10 +68,6 @@ class UserAddressForm extends React.Component {
             submit={handleSubmit(updateUser)}
           />
         </form>
-        <YMaps>
-          <div>My awesome application with maps!</div>
-          <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} />
-        </YMaps>
       </Flex>
     );
   }

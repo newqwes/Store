@@ -21,26 +21,26 @@ export const Cancel = styled(Edit)`
   right: -60px;
 `;
 
-const getSaveButtonColor = ({ themeVariant, pristine }) => {
-  const buttonType = pristine ? 'disabled' : 'active';
+const getSaveButtonColor = ({ themeVariant, pristine, error }) => {
+  const buttonStatus = pristine || error ? 'disabled' : 'active';
 
-  const saveButtonColor = get(['theme', 'control', 'saveButton', buttonType, themeVariant]);
+  const saveButtonColor = get(['theme', 'control', 'saveButton', buttonStatus, themeVariant]);
 
   return saveButtonColor;
 };
 
-const getSaveButtonColorHover = ({ themeVariant, pristine }) => {
-  const buttonType = pristine ? 'disabled' : 'hover';
+const getSaveButtonColorHover = ({ themeVariant, pristine, error }) => {
+  const buttonStatus = pristine || error ? 'disabled' : 'hover';
 
-  const saveButtonColorHover = get(['theme', 'control', 'saveButton', buttonType, themeVariant]);
+  const saveButtonColorHover = get(['theme', 'control', 'saveButton', buttonStatus, themeVariant]);
 
   return saveButtonColorHover;
 };
 
 export const Save = styled(Edit)(
-  ({ pristine }) => css`
+  ({ pristine, error }) => css`
     color: ${getSaveButtonColor};
-    cursor: ${pristine ? 'default' : 'pointer'};
+    cursor: ${pristine || error ? 'default' : 'pointer'};
 
     &:hover {
       color: ${getSaveButtonColorHover};

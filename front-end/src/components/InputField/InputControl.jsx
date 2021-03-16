@@ -5,7 +5,7 @@ import THEME_VARIANT from '../../constants/themeVariant';
 
 import { Edit, Save, Cancel } from './styled';
 
-const InputControl = ({ disabled, onEdit, onCancel, onSave, pristine, themeVariant }) => {
+const InputControl = ({ disabled, onEdit, onCancel, onSave, pristine, error, themeVariant }) => {
   if (disabled) {
     return (
       <Edit pristine={pristine} themeVariant={themeVariant} onClick={onEdit}>
@@ -16,7 +16,7 @@ const InputControl = ({ disabled, onEdit, onCancel, onSave, pristine, themeVaria
 
   return (
     <Fragment>
-      <Save onClick={onSave} themeVariant={themeVariant} pristine={pristine}>
+      <Save onClick={onSave} themeVariant={themeVariant} pristine={pristine} error={error}>
         Сохранить
       </Save>
       <Cancel onClick={onCancel} themeVariant={themeVariant} pristine={pristine}>
@@ -33,6 +33,7 @@ InputControl.propTypes = {
   onCancel: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
   pristine: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 InputControl.defaultProps = {

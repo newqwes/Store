@@ -22,6 +22,9 @@ import {
   DELETE_USER_PENDING,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
+  ADD_PRODUCT_PENDING,
+  ADD_PRODUCT_SUCCESS,
+  ADD_PRODUCT_FAILURE,
 } from '../actions';
 
 export const getProductsList = type => ({
@@ -132,5 +135,20 @@ export const getHistorySuccess = userHistory => ({
 
 export const getHistoryFailure = error => ({
   type: GET_HISTORY_FAILURE,
+  payload: error,
+});
+
+export const addProduct = productData => ({
+  type: ADD_PRODUCT_PENDING,
+  payload: productData,
+});
+
+export const addProductSuccess = productData => ({
+  type: ADD_PRODUCT_SUCCESS,
+  payload: productData,
+});
+
+export const addProductFailure = error => ({
+  type: ADD_PRODUCT_FAILURE,
   payload: error,
 });

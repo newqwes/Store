@@ -12,6 +12,13 @@ const requiredRule = [
   },
 ];
 
+const optionsRule = [
+  {
+    rule: rules.options,
+    message: 'Обязателен для заполнения',
+  },
+];
+
 const commonRules = [
   {
     rule: rules.maxCharacters(CONSTRAINTS.maxLength),
@@ -47,6 +54,8 @@ export const cityValidation = validation(requiredRule);
 export const homeValidation = validation(requiredRule);
 export const streetValidation = validation(requiredRule);
 export const apartmentValidation = validation(requiredRule);
+export const requiredValidation = validation(requiredRule);
+export const optionsValidation = validation(optionsRule);
 
 export const phoneValidation = validation(commonRules);
 export const loginValidation = validation(commonRules);

@@ -2,13 +2,16 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { passwordValidation, equalValidation } from '../utils/fieldValidation';
+import { requiredValidation, optionsValidation } from '../utils/fieldValidation';
 
+import { addProduct } from '../actionCreators';
 import ProfileAddProductForm from '../components/ProfileSection/ProfileAddProductForm';
 
-const validate = ({ password, confirmPassword }) => ({
-  password: passwordValidation(password),
-  confirmPassword: equalValidation({ value: password, other: confirmPassword }),
+const validate = ({ name, description, photoUrl, options }) => ({
+  name: requiredValidation(name),
+  description: requiredValidation(description),
+  photoUrl: requiredValidation(photoUrl),
+  options: optionsValidation(options),
 });
 
 const withReduxForm = reduxForm({
@@ -16,7 +19,9 @@ const withReduxForm = reduxForm({
   validate,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  addProduct,
+};
 
 const withConnect = connect(null, mapDispatchToProps);
 

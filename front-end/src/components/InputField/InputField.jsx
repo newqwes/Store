@@ -27,8 +27,9 @@ class InputField extends React.Component {
 
   handleSave = () => {
     const pristine = getOr(null, ['meta', 'pristine'], this.props);
+    const error = getOr(null, ['meta', 'error'], this.props);
 
-    if (pristine) return;
+    if (pristine || error) return;
 
     this.props.submit();
     this.setState({ disabled: true });
@@ -57,7 +58,7 @@ class InputField extends React.Component {
       <FieldStyle
         isError={touched && error}
         themeVariant={themeVariant}
-        disabled={disabled}
+        disabled={control && disabled}
         pristine={pristine}>
         <label>{label}</label>
         <input
@@ -78,6 +79,7 @@ class InputField extends React.Component {
             onSave={this.handleSave}
             onCancel={this.handleCancel}
             pristine={pristine}
+            error={error}
             themeVariant={themeVariant}
           />
         )}

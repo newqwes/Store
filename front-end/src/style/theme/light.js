@@ -304,9 +304,23 @@ const light = {
           inverted: COLORS.softYellow,
         },
       },
+
+      active: {
+        background: {
+          default: COLORS.white,
+          inverted: COLORS.softYellow,
+        },
+      },
+
       border: {
-        default: COLORS.lightGrayishBlue,
-        inverted: COLORS.softYellow,
+        default: {
+          default: COLORS.lightGrayishBlue,
+          inverted: COLORS.softYellow,
+        },
+        error: {
+          default: COLORS.darkPink,
+          inverted: COLORS.softYellow,
+        },
       },
     },
   },

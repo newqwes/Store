@@ -5,7 +5,8 @@ import { NavLink } from 'react-router-dom';
 import Label from '../Label/styled';
 
 export const CustomLabel = styled(Label)`
-  margin: 20px 0;
+  font-size: 24px;
+  margin: 30px 0 10px;
 `;
 
 const getAccentColor = ({ themeVariant }) =>
@@ -14,12 +15,12 @@ const getAccentColor = ({ themeVariant }) =>
 export const Submit = styled.span`
   font-size: 16px;
   cursor: pointer;
+  margin: 20px;
   color: ${getAccentColor};
 `;
 
 export const Message = styled.span`
   font-size: 14px;
-  margin-top: 20px;
   opacity: 0.6;
   color: ${getAccentColor};
 `;
@@ -57,13 +58,40 @@ export const ProfileContent = styled.div`
   align-items: flex-start;
 `;
 
+const getInputBackgroundColor = ({ themeVariant, disabled }) => {
+  const inputStatus = disabled ? 'disabled' : 'active';
+
+  const backgroundColor = get([
+    'theme',
+    'profile',
+    'input',
+    inputStatus,
+    'background',
+    themeVariant,
+  ]);
+
+  return backgroundColor;
+};
+
+const getInputBorderColor = ({ themeVariant, isError }) => {
+  const inputStatus = isError ? 'error' : 'default';
+
+  const borderColor = get(['theme', 'profile', 'input', 'border', inputStatus, themeVariant]);
+
+  return borderColor;
+};
+
 export const InputFieldContent = styled.div(
-  ({ themeVariant, disabled }) => css`
+  () => css`
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    margin: 20px 0;
+    margin: 30px 0;
     position: relative;
+
+    span {
+      position: absolute;
+    }
 
     input {
       margin: 10px 0;
@@ -74,11 +102,98 @@ export const InputFieldContent = styled.div(
       height: 46px;
       padding: 14px 16px;
       border-radius: 12px;
-      border: 1px solid ${get(['theme', 'profile', 'input', 'border', themeVariant])};
-      background-color: ${disabled &&
-      get(['theme', 'profile', 'input', 'disabled', 'background', themeVariant])};
+      border: 1px solid ${getInputBorderColor};
+      background-color: ${getInputBackgroundColor};
       font-size: 16px;
       line-height: 20px;
     }
   `,
 );
+
+export const SelectFieldContent = styled.div(
+  () => css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    select {
+      margin-left: 10px;
+      outline: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      height: 46px;
+      padding: 0 16px;
+      width: 80%;
+      min-width: 50px;
+      border-radius: 12px;
+      border: 1px solid ${getInputBorderColor};
+      background-color: ${getInputBackgroundColor};
+      font-size: 16px;
+      line-height: 20px;
+    }
+  `,
+);
+
+export const TextareaFieldContent = styled.div(
+  () => css`
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    margin: 30px 0;
+    position: relative;
+
+    span {
+      position: absolute;
+    }
+
+    textarea {
+      resize: none;
+      margin: 10px 0;
+      outline: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      height: 80px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid ${getInputBorderColor};
+      background-color: ${getInputBackgroundColor};
+      font-size: 16px;
+      line-height: 20px;
+    }
+  `,
+);
+
+export const SmallInputFieldContent = styled.div(
+  () => css`
+    display: flex;
+    text-decoration: none;
+    flex-direction: column;
+    width: 150px;
+    margin-bottom: 20px;
+
+    input,
+    select {
+      margin: 10px 0;
+      outline: none;
+      box-shadow: none;
+      box-sizing: border-box;
+      height: 46px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: 1px solid ${getInputBorderColor};
+      background-color: ${getInputBackgroundColor};
+      font-size: 16px;
+      line-height: 20px;
+    }
+    select {
+      padding: 0 16px;
+    }
+  `,
+);
+
+export const OptionsWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;

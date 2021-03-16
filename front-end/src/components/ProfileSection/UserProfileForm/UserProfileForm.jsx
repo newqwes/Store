@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Field } from 'redux-form';
 
-import FONT_SIZE from '../../../constants/fontSize';
 import DIRECTION from '../../../constants/direction';
-import FONT_WEIGHT from '../../../constants/fontWeight';
 import ROUTER_PATH from '../../../constants/routerPath';
 import THEME_VARIANT from '../../../constants/themeVariant';
 
@@ -32,9 +30,7 @@ class UserProfileForm extends React.Component {
 
     return (
       <Flex direction={DIRECTION.column}>
-        <CustomLabel fontSize={FONT_SIZE.large} fontWeight={FONT_WEIGHT.bold}>
-          Личные данные
-        </CustomLabel>
+        <CustomLabel>Личные данные</CustomLabel>
         <form>
           <Field
             type='text'
