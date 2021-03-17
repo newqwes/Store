@@ -7,6 +7,7 @@ import authorization from './authorization';
 import order from './order';
 import cart from './cart';
 import history from './history';
+import admin from './admin';
 
 const rootReducer = combineReducers({
   products,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   authorization,
   order,
   history,
+  admin,
   form,
 });
 

@@ -25,6 +25,7 @@ import {
   ADD_PRODUCT_PENDING,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_FAILURE,
+  SET_EDIT_MODE,
 } from '../actions';
 
 export const getProductsList = type => ({
@@ -151,4 +152,9 @@ export const addProductSuccess = productData => ({
 export const addProductFailure = error => ({
   type: ADD_PRODUCT_FAILURE,
   payload: error,
+});
+
+export const setEditMode = payload => ({
+  type: SET_EDIT_MODE,
+  payload,
 });

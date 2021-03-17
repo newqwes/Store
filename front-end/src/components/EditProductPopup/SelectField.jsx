@@ -1,11 +1,10 @@
 import React from 'react';
 import { noop } from 'lodash/fp';
 
-import fieldInputType from '../../InputField/propTypes';
-import THEME_VARIANT from '../../../constants/themeVariant';
-import ErrorLabel from '../../InputField/ErrorLabel.jsx';
+import THEME_VARIANT from '../../constants/themeVariant';
+import fieldInputType from '../InputField/propTypes';
 
-class TextareaField extends React.Component {
+class SelectField extends React.Component {
   static propTypes = fieldInputType;
 
   static defaultProps = {
@@ -14,6 +13,10 @@ class TextareaField extends React.Component {
     submit: noop(),
     placeholder: '',
     themeVariant: THEME_VARIANT.default,
+  };
+
+  state = {
+    disabled: true,
   };
 
   render() {
@@ -30,18 +33,17 @@ class TextareaField extends React.Component {
     return (
       <FieldStyle isError={touched && error} themeVariant={themeVariant}>
         <label>{label}</label>
-        <textarea
+        <select
           name={name}
           onDrop={onDrop}
           onBlur={onBlur}
           onChange={onChange}
           placeholder={placeholder}>
           {children}
-        </textarea>
-        {touched && error && <ErrorLabel text={error} />}
+        </select>
       </FieldStyle>
     );
   }
 }
 
-export default TextareaField;
+export default SelectField;

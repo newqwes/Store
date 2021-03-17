@@ -1,5 +1,6 @@
 import { get } from 'lodash/fp';
 import styled, { css } from 'styled-components';
+
 import LabelWrapper from '../Label/styled';
 
 export const CardWrapper = styled.div`

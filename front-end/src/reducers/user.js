@@ -5,6 +5,7 @@ import {
   GET_USER_DATA_FAILURE,
   DELETE_USER_FAILURE,
   DELETE_USER_SUCCESS,
+  USER_LOGOUT,
 } from '../actions';
 
 const initialState = {
@@ -34,6 +35,7 @@ const user = (state = initialState, action) => {
       return { ...state, error: action.payload };
 
     case DELETE_USER_SUCCESS:
+    case USER_LOGOUT:
       return initialState;
 
     default:

@@ -4,6 +4,50 @@ import { NavLink } from 'react-router-dom';
 
 import Label from '../Label/styled';
 
+export const PopupWrapper = styled.div`
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+`;
+
+export const PopupContent = styled.div`
+  position: absolute;
+  left: 25%;
+  right: 25%;
+  top: 5%;
+  bottom: 5%;
+  margin: auto;
+  background: #fff;
+  padding: 25px;
+  overflow: scroll;
+
+  button {
+    height: 30px;
+    width: 30px;
+  }
+`;
+
+export const CrossWrapper = styled.span`
+  position: fixed;
+  right: 22%;
+  top: 5%;
+  fill: #fff;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: 0.3s;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
 export const CustomLabel = styled(Label)`
   font-size: 24px;
   margin: 30px 0 10px;
@@ -42,22 +86,6 @@ export const Text = styled.p`
   }
 `;
 
-export const ProfileWrapper = styled.section`
-  position: relative;
-  margin: 0 auto;
-  width: 100%;
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const ProfileContent = styled.div`
-  display: flex;
-  margin: 0 auto;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
 const getInputBackgroundColor = ({ themeVariant, disabled }) => {
   const inputStatus = disabled ? 'disabled' : 'active';
 
@@ -86,7 +114,7 @@ export const InputFieldContent = styled.div(
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    margin: 30px 0;
+    margin: 10px 0;
     position: relative;
 
     span {
@@ -95,13 +123,13 @@ export const InputFieldContent = styled.div(
 
     input {
       margin: 10px 0;
-      min-width: 350px;
+      min-width: 150px;
       outline: none;
       box-shadow: none;
       box-sizing: border-box;
-      height: 46px;
+      height: 36px;
       padding: 14px 16px;
-      border-radius: 12px;
+      border-radius: 8px;
       border: 1px solid ${getInputBorderColor};
       background-color: ${getInputBackgroundColor};
       font-size: 16px;
@@ -171,4 +199,5 @@ export const OptionsWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
 `;

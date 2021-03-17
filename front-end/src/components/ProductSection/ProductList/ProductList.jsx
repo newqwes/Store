@@ -7,9 +7,9 @@ import Card from '../../Card';
 
 import ProductListWrapper from './styled';
 
-const ProductList = ({ products, addToCart }) => {
-  const goods = products.map((product) => (
-    <Card addToCart={addToCart} key={product.id} item={product} />
+const ProductList = ({ products, addToCart, editMode }) => {
+  const goods = products.map(product => (
+    <Card addToCart={addToCart} editMode={editMode} key={product.id} item={product} />
   ));
 
   return <ProductListWrapper>{goods}</ProductListWrapper>;
@@ -18,6 +18,7 @@ const ProductList = ({ products, addToCart }) => {
 ProductList.propTypes = {
   products: productsType.isRequired,
   addToCart: PropTypes.func.isRequired,
+  editMode: PropTypes.bool.isRequired,
 };
 
 export default ProductList;

@@ -4,8 +4,12 @@ import { reduxForm } from 'redux-form';
 
 import { optionsValidation, requiredValidation } from '../utils/fieldValidation';
 
-import { addProduct } from '../actionCreators';
-import ProfileAddProductForm from '../components/ProfileSection/ProfileAddProductForm';
+import EditProductPopup from '../components/EditProductPopup';
+
+const updateProduct = payload => ({
+  type: 'updateProduct',
+  payload,
+});
 
 const validate = ({ name, description, photoUrl, options }) => ({
   options: optionsValidation(options),
@@ -15,19 +19,15 @@ const validate = ({ name, description, photoUrl, options }) => ({
 });
 
 const withReduxForm = reduxForm({
-  form: 'addProduct',
+  form: 'updateProduct',
   validate,
   enableReinitialize: true,
 });
 
-const mapStateToProps = () => ({
-  initialValues: { type: 'pizza', currencySign: 'р.', unitSign: 'гр.' },
-});
-
 const mapDispatchToProps = {
-  addProduct,
+  updateProduct,
 };
 
-const withConnect = connect(mapStateToProps, mapDispatchToProps);
+const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(withConnect, withReduxForm)(ProfileAddProductForm);
+export default compose(withConnect, withReduxForm)(EditProductPopup);

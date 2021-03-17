@@ -10,20 +10,36 @@ import FONT_SIZE from '../../constants/fontSize';
 import FONT_WEIGHT from '../../constants/fontWeight';
 import TEXT_ALIGN from '../../constants/textAlign';
 
+import EditProductPopupContainer from '../../containers/EditProductPopupContainer';
+
 import Image from '../Image';
 import Label from '../Label';
 import Flex from '../Flex';
 import Select from '../Select';
 import Button from '../Button';
+import Pen from '../Icons/Pen';
 import ValueFormatter from '../ValueFormatter';
 
 import { CardWrapper, CardContent, Description } from './styled';
 
 class Card extends React.Component {
+  static propTypes = {
+    item: productType.isRequired,
+    themeVariant: PropTypes.string,
+    updateProduct: PropTypes.func.isRequired,
+    addToCart: PropTypes.func.isRequired,
+    editMode: PropTypes.bool.isRequired,
+  };
+
+  static defaultProps = {
+    themeVariant: THEME_VARIANT.default,
+  };
+
   getOptions = () => getOr([], ['item', 'options'], this.props);
 
   state = {
     option: first(this.getOptions()),
+    showPopup: false,
   };
 
   findByWeight = value => {
@@ -43,25 +59,21 @@ class Card extends React.Component {
     return addToCart({ ...item, options: option });
   };
 
-  static propTypes = {
-    item: productType.isRequired,
-    themeVariant: PropTypes.string,
-    addToCart: PropTypes.func.isRequired,
-  };
-
-  static defaultProps = {
-    themeVariant: THEME_VARIANT.default,
-  };
+  togglePopup = () => this.setState({ showPopup: !this.state.showPopup });
 
   render() {
     const {
+      editMode,
       themeVariant,
+      updateProduct,
       item: { photoUrl, name, description, currencySign, options, unitSign },
     } = this.props;
-    const { option } = this.state;
+
+    const { option, showPopup } = this.state;
 
     return (
       <CardWrapper themeVariant={themeVariant}>
+        {editMode && <Pen onClick={this.togglePopup} />}
         <Image src={photoUrl} alt={name} />
         <CardContent themeVariant={themeVariant}>
           <Label text={name} fontSize={FONT_SIZE.medium} fontWeight={FONT_WEIGHT.normal} />
@@ -79,6 +91,13 @@ class Card extends React.Component {
             <Button text='Выбрать' onClick={this.addToCart} />
           </Flex>
         </CardContent>
+        {showPopup && (
+          <EditProductPopupContainer
+            initialValues={this.props.item}
+            closePopup={this.togglePopup}
+            submitPopup={updateProduct}
+          />
+        )}
       </CardWrapper>
     );
   }

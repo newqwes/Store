@@ -11,6 +11,19 @@ import ProductList from './ProductList';
 import { productsType, locationRouterType } from '../../propType';
 
 class ProductSection extends React.Component {
+  static propTypes = {
+    products: productsType.isRequired,
+    themeVariant: PropTypes.string,
+    getProductsList: PropTypes.func.isRequired,
+    editMode: PropTypes.bool.isRequired,
+    addToCart: PropTypes.func.isRequired,
+    location: locationRouterType.isRequired,
+  };
+
+  static defaultProps = {
+    themeVariant: THEME_VARIANT.default,
+  };
+
   setQueryTypeToState = () => {
     const { search } = this.props.location;
     const type = new URLSearchParams(search).get('type');
@@ -28,25 +41,13 @@ class ProductSection extends React.Component {
     }
   }
 
-  static propTypes = {
-    products: productsType.isRequired,
-    themeVariant: PropTypes.string,
-    getProductsList: PropTypes.func.isRequired,
-    addToCart: PropTypes.func.isRequired,
-    location: locationRouterType.isRequired,
-  };
-
-  static defaultProps = {
-    themeVariant: THEME_VARIANT.default,
-  };
-
   render() {
-    const { products, themeVariant, addToCart } = this.props;
+    const { products, themeVariant, addToCart, editMode } = this.props;
 
     return (
       <ProductWrapper themeVariant={themeVariant}>
         <ProductContent>
-          <ProductList products={products} addToCart={addToCart} />
+          <ProductList products={products} addToCart={addToCart} editMode={editMode} />
         </ProductContent>
       </ProductWrapper>
     );

@@ -3,17 +3,17 @@ import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash/fp';
 
-import DIRECTION from '../../../constants/direction';
+import DIRECTION from '../../constants/direction';
 
-import InputField from '../../InputField';
-import Flex from '../../Flex';
+import InputField from '../InputField';
+import Flex from '../Flex';
+import Button from '../Button';
 
-import { SmallInputFieldContent, OptionsWrapper } from '../styled';
+import { SmallInputFieldContent, OptionsWrapper } from './styled';
 
-const Options = ({ fields: { push, map, length }, meta: { error } }) => {
+const Options = ({ fields: { push, map, length, remove }, meta: { error } }) => {
   if (isEqual(length, 0)) push({});
   const addOption = () => push({});
-
   return (
     <Flex direction={DIRECTION.column}>
       {map((option, index) => (
@@ -26,6 +26,7 @@ const Options = ({ fields: { push, map, length }, meta: { error } }) => {
             component={InputField}
             fieldStyle={SmallInputFieldContent}
           />
+          <Button text='-' onClick={() => remove(index)} />
           <Field
             name={`${option}.weight`}
             type='number'
@@ -36,9 +37,7 @@ const Options = ({ fields: { push, map, length }, meta: { error } }) => {
           />
         </OptionsWrapper>
       ))}
-      <button type='button' onClick={addOption}>
-        +
-      </button>
+      <Button text='+' onClick={addOption} />
     </Flex>
   );
 };

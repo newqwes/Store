@@ -47,6 +47,7 @@ class InputField extends React.Component {
       control,
       placeholder,
       themeVariant,
+      error: errorFromArrayField,
       fieldStyle: FieldStyle,
       meta: { touched, error, pristine },
       input: { name, value, onChange, onBlur, onDragStart, onDrop },
@@ -54,9 +55,12 @@ class InputField extends React.Component {
 
     const { disabled } = this.state;
 
+    const errorText = error || errorFromArrayField;
+    const isError = touched && errorText;
+
     return (
       <FieldStyle
-        isError={touched && error}
+        isError={isError}
         themeVariant={themeVariant}
         disabled={control && disabled}
         pristine={pristine}>
@@ -83,7 +87,7 @@ class InputField extends React.Component {
             themeVariant={themeVariant}
           />
         )}
-        {touched && error && <ErrorLabel text={error} />}
+        {isError && <ErrorLabel text={errorText} />}
       </FieldStyle>
     );
   }

@@ -10,7 +10,6 @@ import Flex from '../../Flex';
 import InputField from '../../InputField';
 import Options from './Options.jsx';
 import SelectField from './SelectField.jsx';
-import TextareaField from './TextareaField.jsx';
 
 import {
   InputFieldContent,
@@ -18,7 +17,6 @@ import {
   Submit,
   Message,
   SelectFieldContent,
-  TextareaFieldContent,
   SmallInputFieldContent,
 } from '../styled';
 
@@ -28,20 +26,33 @@ class ProfileAddProductForm extends React.Component {
     handleSubmit: PropTypes.func,
     addProduct: PropTypes.func,
     reset: PropTypes.any,
+    valid: PropTypes.any,
   };
 
   static defaultProps = {
     themeVariant: THEME_VARIANT.default,
   };
 
-  handleClick = () => {
-    const { handleSubmit, addProduct } = this.props;
+  state = {
+    statusMessage: '',
+  };
 
-    handleSubmit(addProduct)();
+  handleClick = () => {
+    const { handleSubmit, addProduct, valid, reset } = this.props;
+
+    const statusMessage = valid ? 'Продукт успешно добавлен!' : 'Ошибка! Не валидные данные.';
+
+    this.setState({ statusMessage });
+
+    if (valid) {
+      handleSubmit(addProduct)();
+      reset();
+    }
   };
 
   render() {
     const { themeVariant, reset } = this.props;
+    const { statusMessage } = this.state;
 
     return (
       <Flex direction={DIRECTION.column}>
@@ -65,17 +76,17 @@ class ProfileAddProductForm extends React.Component {
             type='text'
             name='photoUrl'
             label='Ссылка на картинку'
-            component={TextareaField}
-            fieldStyle={TextareaFieldContent}
+            component={InputField}
+            fieldStyle={InputFieldContent}
           />
           <Field
             type='text'
             name='description'
             label='Описание'
-            component={TextareaField}
-            fieldStyle={TextareaFieldContent}
+            component={InputField}
+            fieldStyle={InputFieldContent}
           />
-          <Flex justifyContent={JUSTIFY_CONTENT.spaceBetween}>
+          <Flex justifyContent={JUSTIFY_CONTENT.center}>
             <Field
               type='text'
               name='currencySign'
@@ -107,8 +118,7 @@ class ProfileAddProductForm extends React.Component {
                 Сбросить
               </Submit>
             </Flex>
-
-            <Message themeVariant={themeVariant}>statusMessage</Message>
+            <Message themeVariant={themeVariant}>{statusMessage}</Message>
           </Flex>
         </form>
       </Flex>

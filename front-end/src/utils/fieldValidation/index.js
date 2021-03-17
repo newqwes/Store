@@ -1,3 +1,4 @@
+import { every } from 'lodash/fp';
 import { rules, validation } from './rules';
 
 const CONSTRAINTS = {
@@ -8,13 +9,6 @@ const CONSTRAINTS = {
 const requiredRule = [
   {
     rule: rules.required,
-    message: 'Обязателен для заполнения',
-  },
-];
-
-const optionsRule = [
-  {
-    rule: rules.options,
     message: 'Обязателен для заполнения',
   },
 ];
@@ -46,17 +40,21 @@ const emailRule = [
   ...commonRules,
 ];
 
+const hasOptions = every(({ weight, price }) => weight && price);
+
+export const optionsValidation = options => {
+  if (hasOptions(options)) return;
+
+  return { _error: 'Обязателен для заполнения' };
+};
+
 export const emailValidation = validation(emailRule);
-
 export const equalValidation = validation(equalRule);
-
 export const cityValidation = validation(requiredRule);
 export const homeValidation = validation(requiredRule);
 export const streetValidation = validation(requiredRule);
 export const apartmentValidation = validation(requiredRule);
 export const requiredValidation = validation(requiredRule);
-export const optionsValidation = validation(optionsRule);
-
 export const phoneValidation = validation(commonRules);
 export const loginValidation = validation(commonRules);
 export const passwordValidation = validation(commonRules);
