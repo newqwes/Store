@@ -38,7 +38,7 @@ UserInfo.propTypes = {
   userAuthorized: PropTypes.bool.isRequired,
   userAdmin: PropTypes.bool.isRequired,
   userName: PropTypes.string.isRequired,
-  editMode: PropTypes.string.isRequired,
+  editMode: PropTypes.bool.isRequired,
   edit: PropTypes.func.isRequired,
 };
 

@@ -17,6 +17,7 @@ class ProductSection extends React.Component {
     getProductsList: PropTypes.func.isRequired,
     editMode: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
+    updateProduct: PropTypes.func.isRequired,
     location: locationRouterType.isRequired,
   };
 
@@ -42,12 +43,17 @@ class ProductSection extends React.Component {
   }
 
   render() {
-    const { products, themeVariant, addToCart, editMode } = this.props;
+    const { products, themeVariant, addToCart, editMode, updateProduct } = this.props;
 
     return (
       <ProductWrapper themeVariant={themeVariant}>
         <ProductContent>
-          <ProductList products={products} addToCart={addToCart} editMode={editMode} />
+          <ProductList
+            products={products}
+            addToCart={addToCart}
+            editMode={editMode}
+            updateProduct={updateProduct}
+          />
         </ProductContent>
       </ProductWrapper>
     );

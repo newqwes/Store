@@ -64,7 +64,7 @@ export const Submit = styled.span`
 `;
 
 export const Message = styled.span`
-  font-size: 14px;
+  font-size: 44px;
   opacity: 0.6;
   color: ${getAccentColor};
 `;

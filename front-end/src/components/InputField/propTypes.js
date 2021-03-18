@@ -6,7 +6,6 @@ const fieldInputType = {
   control: PropTypes.bool,
   placeholder: PropTypes.string,
   themeVariant: PropTypes.string,
-  type: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   fieldStyle: PropTypes.elementType.isRequired,
 
@@ -15,7 +14,7 @@ const fieldInputType = {
     onBlur: PropTypes.func.isRequired,
     onDrop: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
-    value: PropTypes.string.isRequired,
+    value: PropTypes.PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     onChange: PropTypes.func.isRequired,
     onDragStart: PropTypes.func.isRequired,
   }),

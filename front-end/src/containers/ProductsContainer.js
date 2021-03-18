@@ -11,9 +11,15 @@ const mapStateToProps = state => ({
   editMode: getEditModeStatus(state),
 });
 
+const updateProduct = payload => ({
+  type: 'updateProduct',
+  payload,
+});
+
 const mapDispatchToProps = {
   getProductsList,
   addToCart,
+  updateProduct,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductSection);

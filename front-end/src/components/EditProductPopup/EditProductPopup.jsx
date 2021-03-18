@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, FieldArray } from 'redux-form';
 import PropTypes from 'prop-types';
+import { isEqual } from 'lodash/fp';
 
 import DIRECTION from '../../constants/direction';
 import THEME_VARIANT from '../../constants/themeVariant';
@@ -39,21 +40,31 @@ class EditProductPopup extends React.Component {
     themeVariant: THEME_VARIANT.default,
   };
 
+  componentDidMount() {
+    window.addEventListener('keydown', this.keydownTarget);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.keydownTarget);
+  }
+
   state = {
     statusMessage: '',
   };
 
+  keydownTarget = ({ key }) => isEqual(key, 'Escape') && this.props.closePopup();
+
   handleClick = () => {
-    const { handleSubmit, updateProduct, valid, reset } = this.props;
-
-    const statusMessage = valid ? 'Продукт изменен!' : 'Ошибка! Не валидные данные.';
-
-    this.setState({ statusMessage });
+    const { handleSubmit, updateProduct, valid } = this.props;
 
     if (valid) {
+      this.setState({ statusMessage: 'Продукт изменен!' });
       handleSubmit(updateProduct)();
-      reset();
+
+      return;
     }
+
+    this.setState({ statusMessage: 'Ошибка! Не валидные данные.' });
   };
 
   render() {

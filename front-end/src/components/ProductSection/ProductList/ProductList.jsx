@@ -7,9 +7,15 @@ import Card from '../../Card';
 
 import ProductListWrapper from './styled';
 
-const ProductList = ({ products, addToCart, editMode }) => {
+const ProductList = ({ products, addToCart, editMode, updateProduct }) => {
   const goods = products.map(product => (
-    <Card addToCart={addToCart} editMode={editMode} key={product.id} item={product} />
+    <Card
+      addToCart={addToCart}
+      editMode={editMode}
+      updateProduct={updateProduct}
+      key={product.id}
+      item={product}
+    />
   ));
 
   return <ProductListWrapper>{goods}</ProductListWrapper>;
@@ -18,6 +24,7 @@ const ProductList = ({ products, addToCart, editMode }) => {
 ProductList.propTypes = {
   products: productsType.isRequired,
   addToCart: PropTypes.func.isRequired,
+  updateProduct: PropTypes.func.isRequired,
   editMode: PropTypes.bool.isRequired,
 };
 

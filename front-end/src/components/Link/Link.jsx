@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CustomNavLink, CustomLink } from './styled';
+
 import THEME_VARIANT from '../../constants/themeVariant';
+
+import { CustomNavLink, CustomLink } from './styled.jsx';
 
 const Link = ({ href, to, children, themeVariant }) => {
   const Component = to ? CustomNavLink : CustomLink;

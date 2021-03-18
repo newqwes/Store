@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { get } from 'lodash/fp';
 
@@ -9,7 +10,7 @@ const sharedStyle = ({ themeVariant }) => css`
   text-decoration: none;
 `;
 
-export const CustomNavLink = styled(NavLink)`
+export const CustomNavLink = styled(({ themeVariant, ...props }) => <NavLink {...props} />)`
   ${sharedStyle}
 `;
 
