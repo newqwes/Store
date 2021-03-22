@@ -30,9 +30,9 @@ export const getOrderData = (cart, userId) => {
 
   const extractCartData = ({ options, ...other }) => omit({ ...options, ...other }, 'id');
 
-  const orderStore = cart.map(extractCartData);
+  const cartData = cart.map(extractCartData);
 
-  const orderData = { date, userId, orderStore };
+  const orderData = { date, userId, orderData: cartData };
 
   return orderData;
 };

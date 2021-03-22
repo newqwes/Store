@@ -16,9 +16,9 @@ import {
   UPDATE_USER_FAILURE,
   GET_USER_DATA_SUCCESS,
   GET_USER_DATA_FAILURE,
-  GET_HISTORY_PENDING,
-  GET_HISTORY_SUCCESS,
-  GET_HISTORY_FAILURE,
+  GET_ORDER_HISTORY_PENDING,
+  GET_ORDER_HISTORY_SUCCESS,
+  GET_ORDER_HISTORY_FAILURE,
   DELETE_USER_PENDING,
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
@@ -125,17 +125,17 @@ export const getUserDataFailure = error => ({
   payload: error,
 });
 
-export const getHistory = () => ({
-  type: GET_HISTORY_PENDING,
+export const getOrderHistory = () => ({
+  type: GET_ORDER_HISTORY_PENDING,
 });
 
-export const getHistorySuccess = userHistory => ({
-  type: GET_HISTORY_SUCCESS,
+export const getOrderHistorySuccess = userHistory => ({
+  type: GET_ORDER_HISTORY_SUCCESS,
   payload: userHistory,
 });
 
-export const getHistoryFailure = error => ({
-  type: GET_HISTORY_FAILURE,
+export const getOrderHistoryFailure = error => ({
+  type: GET_ORDER_HISTORY_FAILURE,
   payload: error,
 });
 

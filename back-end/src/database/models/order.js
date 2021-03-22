@@ -2,7 +2,7 @@ import { Model, DataTypes } from 'sequelize';
 import { v4 as uuidv4 } from 'uuid';
 
 import sequelize from '..';
-import OrderStore from './orderStore';
+import OrderData from './orderData';
 
 class Order extends Model {}
 
@@ -37,8 +37,8 @@ Order.init(
   },
 );
 
-OrderStore.belongsTo(Order, { foreignKey: 'id' });
+OrderData.belongsTo(Order, { foreignKey: 'id' });
 
-Order.hasMany(OrderStore, { foreignKey: 'orderId', as: 'orderStore' });
+Order.hasMany(OrderData, { foreignKey: 'orderId', as: 'orderData' });
 
 export default Order;

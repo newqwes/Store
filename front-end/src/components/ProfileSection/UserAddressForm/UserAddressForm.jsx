@@ -8,6 +8,7 @@ import InputField from '../../InputField';
 import DIRECTION from '../../../constants/direction';
 
 import { CustomLabel, InputFieldContent } from '../styled';
+import YandexInput from '../../YandexInput';
 
 class UserAddressForm extends React.Component {
   static propTypes = {
@@ -22,6 +23,7 @@ class UserAddressForm extends React.Component {
     return (
       <Flex direction={DIRECTION.column}>
         <CustomLabel>Ваш адрес</CustomLabel>
+        <YandexInput />
         <form>
           <Field
             type='text'

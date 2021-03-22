@@ -45,7 +45,7 @@ export const orderAPI = {
     return extractResponsData(respons);
   },
 
-  getUserOrders: async () => {
+  getOrderHistory: async () => {
     const respons = await instance.get('order', {
       headers: { Authorization: getToken() },
     });

@@ -4,7 +4,7 @@ import orderMessage from '../utils/orderMessage';
 import createResponse from '../utils/createResponse';
 import { getOrderData } from '../utils/extractData';
 
-import OrderStore from '../database/models/orderStore';
+import OrderData from '../database/models/orderData';
 import Order from '../database/models/order';
 
 class OrderService {
@@ -19,7 +19,7 @@ class OrderService {
         const orderData = getOrderData(cart, userId);
 
         await Order.create(orderData, {
-          include: { model: OrderStore, as: 'orderStore' },
+          include: { model: OrderData, as: 'orderData' },
         });
       }
 
@@ -37,7 +37,7 @@ class OrderService {
 
       const orders = await Order.findAll({
         where: { userId },
-        include: { model: OrderStore, as: 'orderStore' },
+        include: { model: OrderData, as: 'orderData' },
       });
 
       return createResponse(200, 'Successfully!', orders);

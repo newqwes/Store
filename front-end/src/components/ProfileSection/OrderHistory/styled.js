@@ -1,18 +1,18 @@
 import styled, { css } from 'styled-components';
 import { get } from 'lodash/fp';
 
-export const UserHistoryWrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-export const UserHistoryItem = styled.div`
+export const ListItemWrapper = styled.div`
   margin-bottom: 50px;
 `;
 
-export const HistoryItemContent = styled.div(
+export const ItemContent = styled.div(
   ({ themeVariant }) => css`
     margin-bottom: 15px;
     background-color: white;
@@ -22,14 +22,14 @@ export const HistoryItemContent = styled.div(
   `,
 );
 
-export const HistoryPhotoContent = styled.div`
+export const PhotoContent = styled.div`
   flex-basis: 15%;
   background: no-repeat center/80% url(${props => props.backgroundImage});
   height: 80px;
   align-self: center;
 `;
 
-export const HistoryDescriptionContent = styled.div`
+export const DescriptionContent = styled.div`
   flex-basis: 65%;
 
   span {
@@ -38,7 +38,7 @@ export const HistoryDescriptionContent = styled.div`
   }
 `;
 
-export const HistoryPriceContent = styled.div`
+export const PriceContent = styled.div`
   flex-basis: 20%;
 
   span {

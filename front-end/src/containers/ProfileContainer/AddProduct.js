@@ -2,10 +2,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { optionsValidation, requiredValidation } from '../utils/fieldValidation';
+import { optionsValidation, requiredValidation } from '../../utils/fieldValidation';
 
-import { addProduct } from '../actionCreators';
-import ProfileAddProductForm from '../components/ProfileSection/ProfileAddProductForm';
+import { addProduct } from '../../actionCreators';
+import AddProductForm from '../../components/ProfileSection/AddProductForm';
 
 const validate = ({ name, description, photoUrl, options }) => ({
   options: optionsValidation(options),
@@ -30,4 +30,4 @@ const mapDispatchToProps = {
 
 const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(withConnect, withReduxForm)(ProfileAddProductForm);
+export default compose(withConnect, withReduxForm)(AddProductForm);

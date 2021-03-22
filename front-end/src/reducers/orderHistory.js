@@ -1,4 +1,4 @@
-import { GET_HISTORY_SUCCESS, GET_HISTORY_FAILURE } from '../actions';
+import { GET_ORDER_HISTORY_SUCCESS, GET_ORDER_HISTORY_FAILURE } from '../actions';
 
 const initialState = {
   data: [
@@ -6,7 +6,7 @@ const initialState = {
       id: '',
       userId: '',
       date: '',
-      orderStore: [
+      orderData: [
         {
           id: null,
           orderId: '',
@@ -25,14 +25,14 @@ const initialState = {
   error: '',
 };
 
-const history = (state = initialState, { type, payload }) => {
+const orderHistory = (state = initialState, { type, payload }) => {
   switch (type) {
-    case GET_HISTORY_SUCCESS:
+    case GET_ORDER_HISTORY_SUCCESS:
       return {
         data: payload,
         error: initialState.error,
       };
-    case GET_HISTORY_FAILURE:
+    case GET_ORDER_HISTORY_FAILURE:
       return {
         data: initialState.data,
         error: payload,
@@ -42,4 +42,4 @@ const history = (state = initialState, { type, payload }) => {
   }
 };
 
-export default history;
+export default orderHistory;

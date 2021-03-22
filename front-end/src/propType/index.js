@@ -58,13 +58,13 @@ export const historyItemType = PropTypes.shape({
   count: PropTypes.number,
 });
 
-export const historyItemsType = PropTypes.arrayOf(historyItemType);
+export const orderDataType = PropTypes.arrayOf(historyItemType);
 
-const historyListType = PropTypes.shape({
+const historyType = PropTypes.shape({
   id: PropTypes.string,
   userId: PropTypes.string,
   date: PropTypes.string,
-  orderStore: historyItemsType,
+  orderData: orderDataType,
 });
 
-export const historyType = PropTypes.arrayOf(historyListType);
+export const orderHistoryType = PropTypes.arrayOf(historyType);

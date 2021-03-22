@@ -39,9 +39,9 @@ export const ProfileMenuWrapper = styled.aside(
 
 export const HamburgerWrapper = styled.div(
   ({ themeVariant }) => css`
-    position: absolute;
-    right: -50px;
-    top: 40px;
+    position: relative;
+    left: 50px;
+    top: 50px;
     cursor: pointer;
     transition: 0.3s ease;
 

@@ -20,7 +20,7 @@ import {
   SmallInputFieldContent,
 } from '../styled';
 
-class ProfileAddProductForm extends React.Component {
+class AddProductForm extends React.Component {
   static propTypes = {
     themeVariant: PropTypes.string,
     handleSubmit: PropTypes.func,
@@ -126,4 +126,4 @@ class ProfileAddProductForm extends React.Component {
   }
 }
 
-export default ProfileAddProductForm;
+export default AddProductForm;

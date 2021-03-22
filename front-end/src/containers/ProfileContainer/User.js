@@ -2,11 +2,11 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { getUserData } from '../selectors/userInfo';
-import { phoneValidation, emailValidation, loginValidation } from '../utils/fieldValidation';
+import { getUserData } from '../../selectors/userInfo';
+import { phoneValidation, emailValidation, loginValidation } from '../../utils/fieldValidation';
 
-import { updateUser, deleteUser } from '../actionCreators';
-import UserProfileForm from '../components/ProfileSection/UserProfileForm';
+import UserProfileForm from '../../components/ProfileSection/UserProfileForm';
+import { updateUser, deleteUser } from '../../actionCreators';
 
 const validate = ({ phone, email, login }) => ({
   phone: phoneValidation(phone),

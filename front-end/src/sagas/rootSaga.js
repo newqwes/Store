@@ -5,7 +5,7 @@ import registrationSaga from './registration';
 import authorizationSaga from './authorization';
 import orderSaga from './order';
 import userSaga from './user';
-import historySaga from './history';
+import orderHistorySaga from './orderHistory';
 
 function* rootSaga() {
   yield all([
@@ -14,7 +14,7 @@ function* rootSaga() {
     registrationSaga(),
     orderSaga(),
     userSaga(),
-    historySaga(),
+    orderHistorySaga(),
   ]);
 }
 

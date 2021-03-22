@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot Card snapshot 1`] = `
+<div
+  className="sc-gsTCUz jiEHUK"
+>
+  <div
+    className="sc-idOhPF ivwdKp"
+  >
+    <img
+      alt="Pizza"
+      src="https://image.com"
+    />
+  </div>
+  <div
+    className="sc-hKgILt fIBcqK"
+  >
+    <span
+      className="sc-bdfBwQ fJgcr"
+      fontSize={20}
+      fontWeight={400}
+    >
+      Pizza
+    </span>
+    <span
+      className="sc-bdfBwQ sc-dlfnbm loYUik cSdHaW"
+      fontSize={12}
+      fontWeight={400}
+    >
+      none description
+    </span>
+    <div
+      className="sc-eCssSg irwUHJ"
+      direction="row"
+    >
+      <span
+        className="sc-dmlrTW kmkMLJ"
+        fontSize={20}
+        fontWeight={400}
+      >
+        24
+        руб.
+      </span>
+      <select
+        className="sc-dIUggk kzOnOa"
+        onChange={[Function]}
+      >
+        <option
+          key="250"
+          value={250}
+        >
+          250
+           
+          г
+        </option>
+      </select>
+      <button
+        className="sc-fubCfw gXwbFj"
+        onClick={[Function]}
+      >
+        Выбрать
+      </button>
+    </div>
+  </div>
+</div>
+`;

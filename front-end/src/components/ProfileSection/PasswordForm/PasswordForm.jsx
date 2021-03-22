@@ -11,7 +11,7 @@ import InputField from '../../InputField';
 
 import { InputFieldContent, Submit, Message, CustomLabel } from '../styled';
 
-class ProfilePasswordForm extends React.Component {
+class PasswordForm extends React.Component {
   static propTypes = {
     updateUser: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
@@ -81,4 +81,4 @@ class ProfilePasswordForm extends React.Component {
   }
 }
 
-export default ProfilePasswordForm;
+export default PasswordForm;

@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot FormSection snapshot 1`] = `
+<section
+  className="sc-bdfBwQ jsNWCE"
+>
+  <div
+    className="sc-hKgILt kbpzhu"
+    direction="row"
+  >
+    <div
+      className="sc-gsTCUz jwhmQt"
+      onAnimationEnd={[Function]}
+    >
+      <div
+        className="sc-hKgILt dElrSb"
+        direction="row"
+      >
+        <span
+          className="sc-eCssSg gpgRrO"
+          fontSize={20}
+          fontWeight={700}
+        >
+          Авторизация
+        </span>
+      </div>
+      <form>
+        Array [
+          <div
+            className="sc-dlfnbm dJMQwA"
+            disabled={false}
+          >
+            <label>
+              Почта
+            </label>
+            <input
+              disabled={false}
+              name="email"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              placeholder="example@gmail.com"
+              type="text"
+              value=""
+            />
+          </div>,
+          <div
+            className="sc-dlfnbm dJMQwA"
+            disabled={false}
+          >
+            <label>
+              Пароль
+            </label>
+            <input
+              disabled={false}
+              name="password"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onDragStart={[Function]}
+              onDrop={[Function]}
+              placeholder="Не менее 5 символов"
+              type="password"
+              value=""
+            />
+          </div>,
+        ]
+        <button
+          className="sc-jSgupP fNTAJX"
+          onClick={[Function]}
+        >
+          Войти
+        </button>
+        <div
+          className="sc-hKgILt dElrSb"
+          direction="row"
+        >
+          <a
+            aria-current={null}
+            href="/registration"
+            onClick={[Function]}
+          >
+            Регистрация
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+`;

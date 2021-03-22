@@ -1,4 +1,4 @@
-export const getDateFormat = date =>
+export const getFormattedDate = date =>
   new Date(date).toLocaleString('ru', {
     year: 'numeric',
     month: 'long',

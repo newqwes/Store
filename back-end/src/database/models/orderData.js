@@ -1,9 +1,9 @@
 import { DataTypes, Model } from 'sequelize';
 import sequelize from '..';
 
-class OrderStore extends Model {}
+class OrderData extends Model {}
 
-OrderStore.init(
+OrderData.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -56,10 +56,10 @@ OrderStore.init(
   },
   {
     sequelize,
-    tableName: 'order_store',
+    tableName: 'order_data',
     timestamps: false,
     underscored: true,
   },
 );
 
-export default OrderStore;
+export default OrderData;

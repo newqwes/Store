@@ -5,10 +5,10 @@ import { mountWithTheme } from '../helpers';
 
 const initProps = {
   text: 'test text',
-  onClick: () => {},
+  onClick: jest.fn(),
 };
 
-const setUp = (props) => mountWithTheme(<Button {...props} />);
+const setUp = props => mountWithTheme(<Button {...props} />);
 
 describe('snapshot Button', () => {
   let component;
@@ -30,14 +30,18 @@ describe('should render Button component', () => {
   });
 
   it('should contain text in button', () => {
-    const button = component;
-
-    expect(button.text()).toBe(initProps.text);
+    expect(component.text()).toBe(initProps.text);
   });
 
   it('should contain only one button tag', () => {
     const wrapper = component.length;
 
     expect(wrapper).toBe(1);
+  });
+
+  it('should the event is triggered onClick', () => {
+    component.simulate('click');
+
+    expect(initProps.onClick).toHaveBeenCalled();
   });
 });

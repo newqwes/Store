@@ -2,10 +2,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { getUserData } from '../selectors/userInfo';
+import { getUserData } from '../../selectors/userInfo';
 
-import { updateUser } from '../actionCreators';
-import UserAddressForm from '../components/ProfileSection/UserAddressForm';
+import { updateUser } from '../../actionCreators';
+import UserAddressForm from '../../components/ProfileSection/UserAddressForm';
 
 const withReduxForm = reduxForm({
   form: 'profileAddress',

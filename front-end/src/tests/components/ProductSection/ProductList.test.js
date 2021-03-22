@@ -2,10 +2,18 @@ import React from 'react';
 import { mountWithTheme } from '../../helpers';
 
 import ProductList from '../../../components/ProductSection/ProductList';
-import mockProductItem from '../../helpers/mocks';
+import { mockProductItem } from '../../helpers/mocks';
 
-const setUp = (props) =>
-  mountWithTheme(<ProductList products={[mockProductItem]} addToCart={() => {}} {...props} />);
+const setUp = props =>
+  mountWithTheme(
+    <ProductList
+      products={[mockProductItem]}
+      addToCart={() => {}}
+      updateProduct={() => {}}
+      editMode={false}
+      {...props}
+    />,
+  );
 
 describe('snapshot ProductList', () => {
   const component = setUp();

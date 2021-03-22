@@ -2,10 +2,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 
-import { passwordValidation, equalValidation } from '../utils/fieldValidation';
+import { passwordValidation, equalValidation } from '../../utils/fieldValidation';
 
-import { updateUser } from '../actionCreators';
-import ProfilePasswordForm from '../components/ProfileSection/ProfilePasswordForm';
+import { updateUser } from '../../actionCreators';
+import PasswordForm from '../../components/ProfileSection/PasswordForm';
 
 const validate = ({ password, confirmPassword }) => ({
   password: passwordValidation(password),
@@ -23,4 +23,4 @@ const mapDispatchToProps = {
 
 const withConnect = connect(null, mapDispatchToProps);
 
-export default compose(withConnect, withReduxForm)(ProfilePasswordForm);
+export default compose(withConnect, withReduxForm)(PasswordForm);
