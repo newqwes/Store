@@ -1,24 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import DIRECTION from '../../constants/direction';
+import { ALIGN_ITEMS } from '../../constants/position';
+
+import { footerMenuType } from '../../propType';
+import Flex from '../Flex';
+
 import NavbarItem from '../Navbar/NavbarItem';
 
-const MenuList = ({ menuItems, menuTitle }) => {
-  const items = menuItems.map(({ id, link, title }) => (
-    <NavbarItem key={id} link={link} title={title} />
+const MenuList = ({ alignItems, menu: { menuTitle, items } }) => {
+  const menuItems = items.map(({ id, link, href, title }) => (
+    <NavbarItem key={id} link={link} href={href} title={title} />
   ));
 
   return (
-    <div>
+    <Flex direction={DIRECTION.column} alignItems={alignItems}>
       <span>{menuTitle}</span>
-      <ul>{items}</ul>
-    </div>
+      <ul>{menuItems}</ul>
+    </Flex>
   );
 };
 
 MenuList.propTypes = {
-  menuItems: PropTypes.array.isRequired,
-  menuTitle: PropTypes.string.isRequired,
+  alignItems: PropTypes.string,
+  menu: footerMenuType.isRequired,
+};
+
+MenuList.defaultProps = {
+  alignItems: ALIGN_ITEMS.flexStart,
 };
 
 export default MenuList;

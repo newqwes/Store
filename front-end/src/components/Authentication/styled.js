@@ -4,9 +4,9 @@ import { get } from 'lodash/fp';
 import THEME_VARIANT from '../../constants/themeVariant';
 
 export const FormWrapper = styled.section`
-  width: 100%;
   display: flex;
-  margin-top: auto;
+  margin: auto;
+  padding: 20px;
 
   div {
     margin: 0 auto;

@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash/fp';
 
-import THEME_VARIANT from '../../constants/themeVariant';
+import { productsType, locationRouterType } from '../../propType';
 
-import { ProductWrapper, ProductContent } from './styled';
+import THEME_VARIANT from '../../constants/themeVariant';
 
 import ProductList from './ProductList';
 
-import { productsType, locationRouterType } from '../../propType';
+import { ProductWrapper, ProductContent } from './styled';
 
 class ProductSection extends React.Component {
   static propTypes = {
@@ -17,19 +17,28 @@ class ProductSection extends React.Component {
     getProductsList: PropTypes.func.isRequired,
     editMode: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
-    updateProduct: PropTypes.func.isRequired,
     location: locationRouterType.isRequired,
+    updateProduct: PropTypes.func.isRequired,
+    addProduct: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     themeVariant: THEME_VARIANT.default,
   };
 
+  state = {
+    category: '',
+    showPopup: false,
+  };
+
+  togglePopup = () => this.setState({ showPopup: !this.state.showPopup });
+
   setQueryTypeToState = () => {
     const { search } = this.props.location;
-    const type = new URLSearchParams(search).get('type');
+    const category = new URLSearchParams(search).get('type');
 
-    this.props.getProductsList(type);
+    this.setState({ category });
+    this.props.getProductsList(category);
   };
 
   componentDidMount() {
@@ -43,7 +52,8 @@ class ProductSection extends React.Component {
   }
 
   render() {
-    const { products, themeVariant, addToCart, editMode, updateProduct } = this.props;
+    const { products, themeVariant, addToCart, editMode, updateProduct, addProduct } = this.props;
+    const { showPopup, category } = this.state;
 
     return (
       <ProductWrapper themeVariant={themeVariant}>
@@ -51,8 +61,12 @@ class ProductSection extends React.Component {
           <ProductList
             products={products}
             addToCart={addToCart}
+            category={category}
             editMode={editMode}
+            showPopup={showPopup}
+            addProduct={addProduct}
             updateProduct={updateProduct}
+            togglePopup={this.togglePopup}
           />
         </ProductContent>
       </ProductWrapper>

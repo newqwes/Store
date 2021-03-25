@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
 import ROUTER_PATH from '../../constants/routerPath';
 import THEME_VARIANT from '../../constants/themeVariant';
-
-import { isUserAdmin } from '../../selectors/userInfo';
-import { getUserAuthStatus } from '../../selectors/authorization';
 
 import User from './User';
 import Address from './Address';
@@ -23,12 +19,17 @@ class ProfileContainer extends React.Component {
   static propTypes = {
     themeVariant: PropTypes.string,
     userAuthorized: PropTypes.bool.isRequired,
+    getOrderHistory: PropTypes.func.isRequired,
     userAdmin: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
     themeVariant: THEME_VARIANT.default,
   };
+
+  componentDidMount() {
+    this.props.getOrderHistory();
+  }
 
   state = {
     menuActive: true,
@@ -65,9 +66,4 @@ class ProfileContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  userAuthorized: getUserAuthStatus(state),
-  userAdmin: isUserAdmin(state),
-});
-
-export default connect(mapStateToProps)(ProfileContainer);
+export default ProfileContainer;

@@ -51,6 +51,7 @@ export const Message = styled.span`
 export const Text = styled.p`
   font-size: 14px;
   margin: 20px 0;
+
   span {
     cursor: pointer;
     color: ${getAccentColor};
@@ -77,12 +78,12 @@ export const InputFieldContent = styled.div`
 
   input {
     margin: 10px 0;
-    min-width: 350px;
+    min-width: 400px;
     outline: none;
     box-shadow: none;
     box-sizing: border-box;
     height: 46px;
-    padding: 14px 16px;
+    padding: 14px 95px 14px 16px;
     border-radius: 12px;
     border: 1px solid ${getInputBorderColor};
     background-color: ${getInputBackgroundColor};

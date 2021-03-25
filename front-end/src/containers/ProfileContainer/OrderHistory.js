@@ -1,16 +1,11 @@
 import { connect } from 'react-redux';
 
-import { getOrderHistoryFromState } from '../../selectors/orderHistory';
+import { getOrderHistory } from '../../selectors/orderHistory';
 
-import { getOrderHistory } from '../../actionCreators';
 import OrderHistory from '../../components/ProfileSection/OrderHistory';
 
 const mapStateToProps = state => ({
-  orderHistory: getOrderHistoryFromState(state),
+  orderHistory: getOrderHistory(state),
 });
 
-const mapDispatchToProps = {
-  getOrderHistory,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(OrderHistory);
+export default connect(mapStateToProps)(OrderHistory);

@@ -15,7 +15,8 @@ const Pen = ({ height, width, themeVariant, onClick }) => (
       onClick={onClick}
       viewBox='0 0 512 512'
       width={width}
-      xmlns='http://www.w3.org/2000/svg'>
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <path
         d='m341.730469 49.054688c15.601562 15.640624 15.601562 40.957031 0 56.597656l-17.699219 17.800781-83.699219-83.699219 17.800781-17.800781c15.640626-15.601563 40.957032-15.601563 56.597657 0zm0 0'
         fill='#f8ec7d'
@@ -44,8 +45,8 @@ Pen.propTypes = {
 };
 
 Pen.defaultProps = {
-  height: ICON_SIZE.medium,
-  width: ICON_SIZE.medium,
+  height: ICON_SIZE.large,
+  width: ICON_SIZE.large,
   themeVariant: THEME_VARIANT.default,
 };
 

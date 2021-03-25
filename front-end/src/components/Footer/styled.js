@@ -6,8 +6,7 @@ const FooterWrapper = styled.footer(
     display: flex;
     justify-content: space-around;
     margin-top: auto;
-    min-height: 100px;
-    padding: 30px 15%;
+    padding: 20px 15%;
     background: ${get(['theme', 'background', 'color', themeVariant])};
     color: ${get(['theme', 'footer', 'color', themeVariant])};
 
@@ -15,8 +14,8 @@ const FooterWrapper = styled.footer(
       color: ${get(['theme', 'footer', 'color', themeVariant])};
       opacity: 0.7;
       font-weight: normal;
-      font-size: 16px;
-      line-height: 26px;
+      font-size: 15px;
+      line-height: 22px;
 
       :hover {
         opacity: 1;
@@ -24,7 +23,7 @@ const FooterWrapper = styled.footer(
     }
 
     span {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 500;
       line-height: 28px;
     }

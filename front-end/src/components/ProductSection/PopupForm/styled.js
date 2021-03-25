@@ -2,7 +2,33 @@ import styled, { css } from 'styled-components';
 import { get } from 'lodash/fp';
 import { NavLink } from 'react-router-dom';
 
-import Label from '../Label/styled';
+import Label from '../../Label/styled';
+
+const getInputBackgroundColor = ({ themeVariant, disabled }) => {
+  const inputStatus = disabled ? 'disabled' : 'active';
+
+  const backgroundColor = get([
+    'theme',
+    'profile',
+    'input',
+    inputStatus,
+    'background',
+    themeVariant,
+  ]);
+
+  return backgroundColor;
+};
+
+const getInputBorderColor = ({ themeVariant, isError }) => {
+  const inputStatus = isError ? 'error' : 'default';
+
+  const borderColor = get(['theme', 'profile', 'input', 'border', inputStatus, themeVariant]);
+
+  return borderColor;
+};
+
+const getAccentColor = ({ themeVariant }) =>
+  get(['theme', 'profile', 'delete', 'color', themeVariant]);
 
 export const PopupWrapper = styled.div`
   position: fixed;
@@ -27,6 +53,7 @@ export const PopupContent = styled.div`
   background: #fff;
   padding: 25px;
   overflow: scroll;
+  text-align: center;
 
   button {
     height: 30px;
@@ -50,11 +77,8 @@ export const CrossWrapper = styled.span`
 
 export const CustomLabel = styled(Label)`
   font-size: 24px;
-  margin: 30px 0 10px;
+  margin: 30px 0;
 `;
-
-const getAccentColor = ({ themeVariant }) =>
-  get(['theme', 'profile', 'delete', 'color', themeVariant]);
 
 export const Submit = styled.span`
   font-size: 16px;
@@ -86,35 +110,12 @@ export const Text = styled.p`
   }
 `;
 
-const getInputBackgroundColor = ({ themeVariant, disabled }) => {
-  const inputStatus = disabled ? 'disabled' : 'active';
-
-  const backgroundColor = get([
-    'theme',
-    'profile',
-    'input',
-    inputStatus,
-    'background',
-    themeVariant,
-  ]);
-
-  return backgroundColor;
-};
-
-const getInputBorderColor = ({ themeVariant, isError }) => {
-  const inputStatus = isError ? 'error' : 'default';
-
-  const borderColor = get(['theme', 'profile', 'input', 'border', inputStatus, themeVariant]);
-
-  return borderColor;
-};
-
 export const InputFieldContent = styled.div(
   () => css`
     display: flex;
     text-decoration: none;
     flex-direction: column;
-    margin: 10px 0;
+    margin: 20px 0;
     position: relative;
 
     span {

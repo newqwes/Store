@@ -1,5 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
+import { orderDataItemType } from '../../../propType';
 
 import FONT_SIZE from '../../../constants/fontSize';
 import FONT_WEIGHT from '../../../constants/fontWeight';
@@ -11,16 +12,7 @@ import ValueFormatter from '../../ValueFormatter';
 
 import { DescriptionContent, ItemContent, PhotoContent, PriceContent } from './styled';
 
-const OrderHistoryItem = ({
-  name,
-  count,
-  price,
-  description,
-  photoUrl,
-  unitSign,
-  currencySign,
-  weight,
-}) => (
+const Item = ({ name, count, price, description, photoUrl, unitSign, currencySign, weight }) => (
   <ItemContent>
     <Flex justifyContent={JUSTIFY_CONTENT.spaceBetween} alignItems={ALIGN_ITEMS.stretch}>
       <PhotoContent backgroundImage={photoUrl} />
@@ -57,15 +49,6 @@ const OrderHistoryItem = ({
   </ItemContent>
 );
 
-OrderHistoryItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  count: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  photoUrl: PropTypes.string.isRequired,
-  unitSign: PropTypes.string.isRequired,
-  currencySign: PropTypes.string.isRequired,
-  weight: PropTypes.number.isRequired,
-};
+Item.propTypes = orderDataItemType.isRequired;
 
-export default OrderHistoryItem;
+export default Item;

@@ -45,7 +45,7 @@ export const fieldType = PropTypes.shape({
   placeholder: PropTypes.string.isRequired,
 });
 
-export const historyItemType = PropTypes.shape({
+export const orderDataItemType = PropTypes.shape({
   id: PropTypes.number,
   orderId: PropTypes.string,
   name: PropTypes.string,
@@ -58,13 +58,25 @@ export const historyItemType = PropTypes.shape({
   count: PropTypes.number,
 });
 
-export const orderDataType = PropTypes.arrayOf(historyItemType);
+export const orderDataType = PropTypes.arrayOf(orderDataItemType);
 
-const historyType = PropTypes.shape({
+const orderHistoryItemType = PropTypes.shape({
   id: PropTypes.string,
   userId: PropTypes.string,
   date: PropTypes.string,
   orderData: orderDataType,
 });
 
-export const orderHistoryType = PropTypes.arrayOf(historyType);
+export const orderHistoryType = PropTypes.arrayOf(orderHistoryItemType);
+
+const footerMenuItemType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string,
+  href: PropTypes.string,
+});
+
+export const footerMenuType = PropTypes.shape({
+  menuTitle: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(footerMenuItemType),
+});

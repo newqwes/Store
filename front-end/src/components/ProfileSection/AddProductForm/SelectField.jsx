@@ -38,7 +38,8 @@ class SelectField extends React.Component {
           onDrop={onDrop}
           onBlur={onBlur}
           onChange={onChange}
-          placeholder={placeholder}>
+          placeholder={placeholder}
+        >
           {children}
         </select>
       </FieldStyle>

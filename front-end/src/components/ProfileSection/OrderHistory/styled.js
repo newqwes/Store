@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const ListItemWrapper = styled.div`
+export const ListWrapper = styled.div`
   margin-bottom: 50px;
 `;
 

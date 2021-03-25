@@ -15,6 +15,16 @@ const HeaderWrapper = styled.header(
     svg {
       margin: 0 20px;
     }
+
+    span,
+    button {
+      opacity: 0.8;
+      transition: 0.3s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   `,
 );
 

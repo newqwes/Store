@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import SECTION_WIDTH from '../../constants/sectionWidth';
 
 export const CartSectionWrapper = styled.section`
-  width: 100%;
+  margin: auto 0;
+  padding: 20px;
 `;
 
 export const CartSectionContent = styled.div`

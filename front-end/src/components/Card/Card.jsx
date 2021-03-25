@@ -10,15 +10,14 @@ import FONT_SIZE from '../../constants/fontSize';
 import FONT_WEIGHT from '../../constants/fontWeight';
 import TEXT_ALIGN from '../../constants/textAlign';
 
-import EditProductPopupContainer from '../../containers/EditProductPopupContainer';
-
 import Image from '../Image';
 import Label from '../Label';
 import Flex from '../Flex';
 import Select from '../Select';
 import Button from '../Button';
-import Pen from '../Icons/Pen';
 import ValueFormatter from '../ValueFormatter';
+import Pen from '../Icons/Pen';
+import PopupForm from '../ProductSection/PopupForm';
 
 import { CardWrapper, CardContent, Description } from './styled';
 
@@ -26,9 +25,10 @@ class Card extends React.Component {
   static propTypes = {
     item: productType.isRequired,
     themeVariant: PropTypes.string,
-    updateProduct: PropTypes.func.isRequired,
     addToCart: PropTypes.func.isRequired,
+    updateProduct: PropTypes.func.isRequired,
     editMode: PropTypes.bool.isRequired,
+    category: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -66,6 +66,7 @@ class Card extends React.Component {
       editMode,
       themeVariant,
       updateProduct,
+      category,
       item: { photoUrl, name, description, currencySign, options, unitSign },
     } = this.props;
 
@@ -73,7 +74,6 @@ class Card extends React.Component {
 
     return (
       <CardWrapper themeVariant={themeVariant}>
-        {editMode && <Pen onClick={this.togglePopup} />}
         <Image src={photoUrl} alt={name} />
         <CardContent themeVariant={themeVariant}>
           <Label text={name} fontSize={FONT_SIZE.medium} fontWeight={FONT_WEIGHT.normal} />
@@ -91,11 +91,15 @@ class Card extends React.Component {
             <Button text='Выбрать' onClick={this.addToCart} />
           </Flex>
         </CardContent>
+
+        {editMode && <Pen onClick={this.togglePopup} />}
         {showPopup && (
-          <EditProductPopupContainer
+          <PopupForm
+            popupTitle='Изменить продукт'
             initialValues={this.props.item}
             closePopup={this.togglePopup}
-            submitPopup={updateProduct}
+            submitProduct={updateProduct}
+            category={category}
           />
         )}
       </CardWrapper>

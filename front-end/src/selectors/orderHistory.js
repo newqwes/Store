@@ -3,4 +3,4 @@ import { createSelector } from 'reselect';
 
 const orderHistoryData = get(['orderHistory', 'data']);
 
-export const getOrderHistoryFromState = createSelector(orderHistoryData)();
+export const getOrderHistory = createSelector(orderHistoryData)();

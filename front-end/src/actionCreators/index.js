@@ -25,6 +25,8 @@ import {
   ADD_PRODUCT_PENDING,
   ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_FAILURE,
+  UPDATE_PRODUCT_PENDING,
+  UPDATE_PRODUCT_FAILURE,
   SET_EDIT_MODE,
 } from '../actions';
 
@@ -157,4 +159,14 @@ export const addProductFailure = error => ({
 export const setEditMode = payload => ({
   type: SET_EDIT_MODE,
   payload,
+});
+
+export const updateProduct = productData => ({
+  type: UPDATE_PRODUCT_PENDING,
+  payload: productData,
+});
+
+export const updateProductFailure = error => ({
+  type: UPDATE_PRODUCT_FAILURE,
+  payload: error,
 });

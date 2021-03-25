@@ -3,13 +3,13 @@ import { Field, FieldArray } from 'redux-form';
 import PropTypes from 'prop-types';
 import { isEqual } from 'lodash/fp';
 
-import DIRECTION from '../../constants/direction';
-import THEME_VARIANT from '../../constants/themeVariant';
-import { JUSTIFY_CONTENT } from '../../constants/position';
+import DIRECTION from '../../../constants/direction';
+import THEME_VARIANT from '../../../constants/themeVariant';
+import { JUSTIFY_CONTENT } from '../../../constants/position';
 
-import Flex from '../Flex';
-import Cross from '../Icons/Сross';
-import InputField from '../InputField';
+import Flex from '../../Flex';
+import Cross from '../../Icons/Сross';
+import InputField from '../../InputField';
 import Options from './Options.jsx';
 import SelectField from './SelectField.jsx';
 
@@ -25,15 +25,16 @@ import {
   CrossWrapper,
 } from './styled';
 
-class EditProductPopup extends React.Component {
+class EditPopup extends React.Component {
   static propTypes = {
     themeVariant: PropTypes.string,
     handleSubmit: PropTypes.func,
     reset: PropTypes.any,
     valid: PropTypes.any,
-
     closePopup: PropTypes.func.isRequired,
-    updateProduct: PropTypes.func.isRequired,
+    submitProduct: PropTypes.func.isRequired,
+    popupTitle: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -55,11 +56,11 @@ class EditProductPopup extends React.Component {
   keydownTarget = ({ key }) => isEqual(key, 'Escape') && this.props.closePopup();
 
   handleClick = () => {
-    const { handleSubmit, updateProduct, valid } = this.props;
+    const { handleSubmit, submitProduct, valid, closePopup } = this.props;
 
     if (valid) {
-      this.setState({ statusMessage: 'Продукт изменен!' });
-      handleSubmit(updateProduct)();
+      handleSubmit(submitProduct)();
+      closePopup();
 
       return;
     }
@@ -68,13 +69,13 @@ class EditProductPopup extends React.Component {
   };
 
   render() {
-    const { themeVariant, reset, closePopup } = this.props;
+    const { themeVariant, reset, closePopup, popupTitle, category } = this.props;
     const { statusMessage } = this.state;
 
     return (
       <PopupWrapper>
         <PopupContent>
-          <CustomLabel>Изменить продукт</CustomLabel>
+          <CustomLabel>{popupTitle}</CustomLabel>
           <CrossWrapper>
             <Cross onClick={closePopup} />
           </CrossWrapper>
@@ -86,7 +87,13 @@ class EditProductPopup extends React.Component {
               component={InputField}
               fieldStyle={InputFieldContent}
             />
-            <Field name='type' label='Тип:' component={SelectField} fieldStyle={SelectFieldContent}>
+            <Field
+              name='type'
+              label='Тип:'
+              defaultValue={category}
+              component={SelectField}
+              fieldStyle={SelectFieldContent}
+            >
               <option value='pizza'>пицца</option>
               <option value='chicken'>курица</option>
               <option value='salad'>салат</option>
@@ -112,8 +119,10 @@ class EditProductPopup extends React.Component {
                 type='text'
                 name='currencySign'
                 label='Валюта'
+                defaultValue='р.'
                 component={SelectField}
-                fieldStyle={SmallInputFieldContent}>
+                fieldStyle={SmallInputFieldContent}
+              >
                 <option value='р.'>р.</option>
                 <option value='$'>$</option>
               </Field>
@@ -121,8 +130,10 @@ class EditProductPopup extends React.Component {
                 type='text'
                 name='unitSign'
                 label='Мера'
+                defaultValue='гр'
                 component={SelectField}
-                fieldStyle={SmallInputFieldContent}>
+                fieldStyle={SmallInputFieldContent}
+              >
                 <option value='гр'>гр.</option>
                 <option value='мл'>мл.</option>
                 <option value='л'>л.</option>
@@ -148,4 +159,4 @@ class EditProductPopup extends React.Component {
   }
 }
 
-export default EditProductPopup;
+export default EditPopup;

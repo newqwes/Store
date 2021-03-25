@@ -1,5 +1,6 @@
 import React from 'react';
-import { getOr, noop } from 'lodash/fp';
+import { YMaps, Map } from 'react-yandex-maps';
+import { get, getOr, noop } from 'lodash/fp';
 
 import fieldInputType from './propTypes';
 
@@ -13,6 +14,9 @@ class InputField extends React.Component {
 
   static defaultProps = {
     control: false,
+    country: 'Беларусь',
+    id: '',
+    yandex: false,
     reset: noop(),
     submit: noop(),
     placeholder: '',
@@ -40,10 +44,27 @@ class InputField extends React.Component {
     this.setState({ disabled: true });
   };
 
+  loadSuggest = ymaps => {
+    const { country, id } = this.props;
+
+    const suggestView = new ymaps.SuggestView(id, {
+      provider: {
+        suggest: request => ymaps.suggest(`${country} ${request}`),
+      },
+    });
+
+    suggestView.events.add('select', e => {
+      const address = get('value', e.get('item'));
+      console.log(address);
+    });
+  };
+
   render() {
     const {
       type,
       label,
+      id,
+      yandex,
       control,
       placeholder,
       themeVariant,
@@ -57,13 +78,15 @@ class InputField extends React.Component {
 
     const errorText = error || errorFromArrayField;
     const isError = touched && errorText;
+    const inputYandexId = yandex ? id : undefined;
 
     return (
       <FieldStyle
         isError={isError}
         themeVariant={themeVariant}
         disabled={control && disabled}
-        pristine={pristine}>
+        pristine={pristine}
+      >
         <label>{label}</label>
         <input
           name={name}
@@ -75,6 +98,7 @@ class InputField extends React.Component {
           placeholder={placeholder}
           onDragStart={onDragStart}
           disabled={control && disabled}
+          id={inputYandexId}
         />
         {control && (
           <InputControl
@@ -88,6 +112,16 @@ class InputField extends React.Component {
           />
         )}
         {isError && <ErrorLabel text={errorText} />}
+        {yandex && (
+          <YMaps>
+            <Map
+              modules={['SuggestView', 'suggest']}
+              height='0'
+              onLoad={ymaps => this.loadSuggest(ymaps)}
+              defaultState={{ center: [53.677834, 23.829529] }}
+            />
+          </YMaps>
+        )}
       </FieldStyle>
     );
   }

@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 
 const fieldInputType = {
   reset: PropTypes.func,
+  defaultValue: PropTypes.string,
+  id: PropTypes.string,
+  yandex: PropTypes.bool,
   submit: PropTypes.func,
   control: PropTypes.bool,
   placeholder: PropTypes.string,

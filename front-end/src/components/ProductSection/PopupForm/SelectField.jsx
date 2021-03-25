@@ -1,13 +1,14 @@
 import React from 'react';
 import { noop } from 'lodash/fp';
 
-import THEME_VARIANT from '../../constants/themeVariant';
-import fieldInputType from '../InputField/propTypes';
+import THEME_VARIANT from '../../../constants/themeVariant';
+import fieldInputType from '../../InputField/propTypes';
 
 class SelectField extends React.Component {
   static propTypes = fieldInputType;
 
   static defaultProps = {
+    defaultValue: '',
     control: false,
     reset: noop(),
     submit: noop(),
@@ -25,6 +26,7 @@ class SelectField extends React.Component {
       placeholder,
       themeVariant,
       children,
+      defaultValue,
       fieldStyle: FieldStyle,
       meta: { touched, error },
       input: { name, onChange, onBlur, onDrop },
@@ -38,7 +40,9 @@ class SelectField extends React.Component {
           onDrop={onDrop}
           onBlur={onBlur}
           onChange={onChange}
-          placeholder={placeholder}>
+          placeholder={placeholder}
+          defaultValue={defaultValue}
+        >
           {children}
         </select>
       </FieldStyle>

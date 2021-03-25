@@ -20,6 +20,14 @@ export const productAPI = {
 
     return extractResponsData(respons);
   },
+
+  updateProduct: async body => {
+    const respons = await instance.put(`products/${body.id}`, body, {
+      headers: { Authorization: getToken() },
+    });
+
+    return extractResponsData(respons);
+  },
 };
 
 export const authAPI = {
