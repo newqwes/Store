@@ -1,8 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { get } from 'lodash/fp';
-import { NavLink } from 'react-router-dom';
 
-import Label from '../../Label/styled';
+import { JITTER, SCALE } from '../../../constants/animation';
+
+import LabelWrapper from '../../Label/styled';
 
 const getInputBackgroundColor = ({ themeVariant, disabled }) => {
   const inputStatus = disabled ? 'disabled' : 'active';
@@ -33,8 +34,6 @@ const getAccentColor = ({ themeVariant }) =>
 export const PopupWrapper = styled.div`
   position: fixed;
   z-index: 1;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
   right: 0;
@@ -47,158 +46,183 @@ export const PopupContent = styled.div`
   position: absolute;
   left: 25%;
   right: 25%;
-  top: 5%;
-  bottom: 5%;
+  top: 25%;
+  bottom: 25%;
   margin: auto;
   background: #fff;
-  padding: 25px;
-  overflow: scroll;
-  text-align: center;
-
-  button {
-    height: 30px;
-    width: 30px;
-  }
-`;
-
-export const CrossWrapper = styled.span`
-  position: fixed;
-  right: 22%;
-  top: 5%;
-  fill: #fff;
-  cursor: pointer;
-  opacity: 0.7;
-  transition: 0.3s;
-
-  &:hover {
-    opacity: 1;
-  }
-`;
-
-export const CustomLabel = styled(Label)`
-  font-size: 24px;
-  margin: 30px 0;
 `;
 
 export const Submit = styled.span`
   font-size: 16px;
   cursor: pointer;
-  margin: 20px;
+  padding-left: 24px;
   color: ${getAccentColor};
 `;
 
 export const Message = styled.span`
-  font-size: 44px;
-  opacity: 0.6;
+  font-size: 38px;
+  opacity: 0.8;
   color: ${getAccentColor};
 `;
 
-export const CustomLink = styled(NavLink)`
-  font-size: 14px;
-  text-decoration: none;
-  color: ${getAccentColor};
-`;
-
-export const Text = styled.p`
-  font-size: 14px;
-  margin: 20px 0;
+export const InputFieldContent = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 15px 0;
 
   span {
-    cursor: pointer;
-    color: ${getAccentColor};
-    padding: 0 5px;
+    position: absolute;
+    width: 100%;
+  }
+
+  input {
+    width: 90%;
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    padding: 6px 15px;
+    border-radius: 4px;
+    border: 1px solid ${getInputBorderColor};
+    font-size: 14px;
   }
 `;
 
-export const InputFieldContent = styled.div(
-  () => css`
-    display: flex;
-    text-decoration: none;
-    flex-direction: column;
-    margin: 20px 0;
-    position: relative;
-
-    span {
-      position: absolute;
-    }
-
-    input {
-      margin: 10px 0;
-      min-width: 150px;
-      outline: none;
-      box-shadow: none;
-      box-sizing: border-box;
-      height: 36px;
-      padding: 14px 16px;
-      border-radius: 8px;
-      border: 1px solid ${getInputBorderColor};
-      background-color: ${getInputBackgroundColor};
-      font-size: 16px;
-      line-height: 20px;
-    }
-  `,
-);
-
-export const SelectFieldContent = styled.div(
-  () => css`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    select {
-      margin-left: 10px;
-      outline: none;
-      box-shadow: none;
-      box-sizing: border-box;
-      height: 46px;
-      padding: 0 16px;
-      width: 50%;
-      min-width: 50px;
-      border-radius: 12px;
-      border: 1px solid ${getInputBorderColor};
-      background-color: ${getInputBackgroundColor};
-      font-size: 16px;
-      line-height: 20px;
-    }
-  `,
-);
-
-export const SmallInputFieldContent = styled.div(
-  () => css`
-    display: flex;
-    text-decoration: none;
-    flex-direction: column;
-    padding: 20px;
-
-    input,
-    select {
-      margin: 10px 0;
-      outline: none;
-      box-shadow: none;
-      box-sizing: border-box;
-      height: 46px;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid ${getInputBorderColor};
-      background-color: ${getInputBackgroundColor};
-      font-size: 16px;
-      line-height: 20px;
-    }
-
-    select {
-      padding: 0 16px;
-    }
-
-    span {
-      position: absolute;
-    }
-  `,
-);
-
-export const OptionsWrapper = styled.div`
+export const SelectFieldContent = styled.div`
   display: flex;
-  width: 100%;
-  justify-content: space-between;
   align-items: center;
+
+  select,
+  input {
+    width: 100%;
+    outline: none;
+    box-shadow: none;
+    box-sizing: border-box;
+    padding: 5px;
+    height: 32px;
+    border-radius: 4px;
+    border: 1px solid ${getInputBorderColor};
+    background-color: ${getInputBackgroundColor};
+    font-size: 14px;
+  }
+
+  select {
+    cursor: pointer;
+  }
+`;
+
+export const AddWrapper = styled.span`
+  margin-bottom: 30px;
+  margin-left: 15px;
+  opacity: 0.7;
+  animation: none;
+  animation-duration: 0.2s;
+
+  &:active,
+  &:hover {
+    opacity: 1;
+  }
+
+  &:hover {
+    animation-name: ${JITTER};
+  }
+
+  &:active {
+    animation-name: ${SCALE};
+  }
+`;
+
+export const СrossWrapper = styled.span`
+  position: absolute;
+  right: 0;
+  margin: 5px 10px;
+  animation: none;
+  opacity: 0.6;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+`;
+
+export const RubbishWrapper = styled.span`
+  bottom: 0;
+  align-self: center;
+  opacity: 0.7;
+  animation: none;
+  animation-duration: 0.2s;
+
+  &:active,
+  &:hover {
+    opacity: 1;
+  }
+
+  &:hover {
+    animation-name: ${JITTER};
+  }
+
+  &:active {
+    animation-name: ${SCALE};
+  }
+`;
+
+export const PopupHeader = styled.div`
+  position: relative;
+  background-color: #eee;
+  padding: 20px;
+`;
+
+export const PopupBody = styled.div`
+  padding: 20px;
+
+  label {
+    margin-right: 10px;
+    width: 80px;
+  }
+`;
+
+export const NameAndType = styled.div`
+  display: flex;
+
+  div:first-child {
+    flex-basis: 80%;
+    padding-right: 10px;
+  }
+`;
+
+export const PriceAndValue = styled.div`
+  display: flex;
+  margin-top: 10px;
+
+  input,
+  select {
+    width: 70px;
+    margin-bottom: 10px;
+  }
+`;
+
+export const OptionListContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+
+  input {
+    width: 70px;
+  }
+
+  ${LabelWrapper} {
+    display: none;
+  }
+
+  label {
+    margin: 0;
+    width: 0;
+  }
+`;
+
+export const ButtonsBlock = styled.div`
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
 `;

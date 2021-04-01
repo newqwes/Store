@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { pickAll, head, compose } from 'lodash/fp';
 
 import { productsType } from '../../../propType';
 
-import Card from '../../Card';
+import Card, { AddCard } from '../../Card';
 import PopupForm from '../PopupForm';
 
 import ProductListWrapper from './styled';
@@ -11,35 +12,36 @@ import ProductListWrapper from './styled';
 const ProductList = ({
   products,
   addToCart,
-  editMode,
   updateProduct,
   addProduct,
+  deleteProduct,
   togglePopup,
   showPopup,
-  category,
+  userAdmin,
 }) => {
   const goods = products.map(product => (
     <Card
       addToCart={addToCart}
-      editMode={editMode}
       key={product.id}
       item={product}
       updateProduct={updateProduct}
-      addProduct={addProduct}
-      category={category}
+      deleteProduct={deleteProduct}
+      userAdmin={userAdmin}
     />
   ));
+
+  const initialValues = compose(pickAll(['unitSign', 'currencySign', 'type']), head)(products);
 
   return (
     <ProductListWrapper>
       {goods}
-      {editMode && <button onClick={togglePopup}>+</button>}
+      {userAdmin && <AddCard togglePopup={togglePopup} />}
       {showPopup && (
         <PopupForm
-          popupTitle='Добавить продукт'
+          label='Добавить'
+          initialValues={initialValues}
           closePopup={togglePopup}
           submitProduct={addProduct}
-          category={category}
         />
       )}
     </ProductListWrapper>
@@ -51,10 +53,10 @@ ProductList.propTypes = {
   addToCart: PropTypes.func.isRequired,
   updateProduct: PropTypes.func.isRequired,
   addProduct: PropTypes.func.isRequired,
-  editMode: PropTypes.bool.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
   togglePopup: PropTypes.func.isRequired,
   showPopup: PropTypes.bool.isRequired,
-  category: PropTypes.string.isRequired,
+  userAdmin: PropTypes.bool.isRequired,
 };
 
 export default ProductList;

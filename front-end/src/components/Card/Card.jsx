@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import find from 'lodash/find';
 import PropTypes from 'prop-types';
 import { getOr, first, toNumber } from 'lodash/fp';
@@ -13,22 +13,23 @@ import TEXT_ALIGN from '../../constants/textAlign';
 import Image from '../Image';
 import Label from '../Label';
 import Flex from '../Flex';
+import Pen from '../Icons/Pen';
+import Rubbish from '../Icons/Rubbish';
 import Select from '../Select';
 import Button from '../Button';
 import ValueFormatter from '../ValueFormatter';
-import Pen from '../Icons/Pen';
 import PopupForm from '../ProductSection/PopupForm';
 
-import { CardWrapper, CardContent, Description } from './styled';
+import { CardWrapper, CardContent, Description, RubbishWrapper, PenWrapper } from './styled';
 
 class Card extends React.Component {
   static propTypes = {
     item: productType.isRequired,
     themeVariant: PropTypes.string,
+    userAdmin: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
     updateProduct: PropTypes.func.isRequired,
-    editMode: PropTypes.bool.isRequired,
-    category: PropTypes.string.isRequired,
+    deleteProduct: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -61,16 +62,23 @@ class Card extends React.Component {
 
   togglePopup = () => this.setState({ showPopup: !this.state.showPopup });
 
-  render() {
+  deleteItem = () => {
     const {
-      editMode,
-      themeVariant,
-      updateProduct,
-      category,
-      item: { photoUrl, name, description, currencySign, options, unitSign },
+      deleteProduct,
+      item: { id, type },
     } = this.props;
 
+    deleteProduct({ id, type });
+  };
+
+  render() {
     const { option, showPopup } = this.state;
+    const {
+      themeVariant,
+      updateProduct,
+      userAdmin,
+      item: { photoUrl, name, description, currencySign, options, unitSign },
+    } = this.props;
 
     return (
       <CardWrapper themeVariant={themeVariant}>
@@ -92,14 +100,23 @@ class Card extends React.Component {
           </Flex>
         </CardContent>
 
-        {editMode && <Pen onClick={this.togglePopup} />}
+        {userAdmin && (
+          <Fragment>
+            <PenWrapper onClick={this.togglePopup}>
+              <Pen />
+            </PenWrapper>
+            <RubbishWrapper onClick={this.deleteItem}>
+              <Rubbish />
+            </RubbishWrapper>
+          </Fragment>
+        )}
+
         {showPopup && (
           <PopupForm
-            popupTitle='Изменить продукт'
+            label='Изменить'
             initialValues={this.props.item}
             closePopup={this.togglePopup}
             submitProduct={updateProduct}
-            category={category}
           />
         )}
       </CardWrapper>

@@ -20,6 +20,7 @@ class InputField extends React.Component {
     reset: noop(),
     submit: noop(),
     placeholder: '',
+    label: '',
     themeVariant: THEME_VARIANT.default,
   };
 
@@ -85,8 +86,7 @@ class InputField extends React.Component {
         isError={isError}
         themeVariant={themeVariant}
         disabled={control && disabled}
-        pristine={pristine}
-      >
+        pristine={pristine}>
         <label>{label}</label>
         <input
           name={name}

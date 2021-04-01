@@ -1,7 +1,51 @@
 import { get } from 'lodash/fp';
 import styled, { css } from 'styled-components';
+import { JITTER, SCALE } from '../../constants/animation';
 
 import LabelWrapper from '../Label/styled';
+
+export const RubbishWrapper = styled.span`
+  cursor: pointer;
+  position: absolute;
+  opacity: 0.8;
+  animation: none;
+  animation-duration: 0.2s;
+
+  &:active,
+  &:hover {
+    opacity: 1;
+  }
+
+  &:hover {
+    animation-name: ${JITTER};
+  }
+
+  &:active {
+    animation-name: ${SCALE};
+  }
+`;
+
+export const PenWrapper = styled.span`
+  cursor: pointer;
+  right: 0;
+  position: absolute;
+  opacity: 0.8;
+  animation: none;
+  animation-duration: 0.2s;
+
+  &:active,
+  &:hover {
+    opacity: 1;
+  }
+
+  &:hover {
+    animation-name: ${JITTER};
+  }
+
+  &:active {
+    animation-name: ${SCALE};
+  }
+`;
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -15,6 +59,21 @@ export const CardWrapper = styled.div`
   border-radius: 20px;
 `;
 
+export const AddCardWrapper = styled(CardWrapper)`
+  text-align: center;
+  opacity: 0.5;
+  border: 2px dashed black;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const СircleWithPlusWrapper = styled.span`
+  margin: auto;
+`;
+
 export const Description = styled(LabelWrapper)`
   opacity: 0.7;
 `;
@@ -25,10 +84,7 @@ export const CardContent = styled.div(
     flex-wrap: wrap;
     justify-content: flex-start;
     line-height: 18px;
-
-    &:last-child {
-      margin-top: auto;
-    }
+    margin-top: auto;
 
     button {
       margin-left: 16px;

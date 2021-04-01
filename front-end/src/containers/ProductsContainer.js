@@ -1,19 +1,20 @@
 import { connect } from 'react-redux';
 
 import { getProducts } from '../selectors/product';
-import { getEditModeStatus } from '../selectors/admin';
-import { getProductsList, addToCart, updateProduct } from '../actionCreators';
+import { isUserAdmin } from '../selectors/userInfo';
+import {
+  getProductsList,
+  addToCart,
+  updateProduct,
+  addProduct,
+  deleteProduct,
+} from '../actionCreators';
 
 import ProductSection from '../components/ProductSection';
 
-const addProduct = payload => ({
-  type: 'TODO_ADD_PRODUCT',
-  payload,
-});
-
 const mapStateToProps = state => ({
   products: getProducts(state),
-  editMode: getEditModeStatus(state),
+  userAdmin: isUserAdmin(state),
 });
 
 const mapDispatchToProps = {
@@ -21,6 +22,7 @@ const mapDispatchToProps = {
   addToCart,
   updateProduct,
   addProduct,
+  deleteProduct,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductSection);

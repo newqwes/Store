@@ -9,7 +9,7 @@ const fieldInputType = {
   control: PropTypes.bool,
   placeholder: PropTypes.string,
   themeVariant: PropTypes.string,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   fieldStyle: PropTypes.elementType.isRequired,
 
   input: PropTypes.shape({

@@ -18,76 +18,46 @@ import Phone from '../Icons/Phone';
 
 import HeaderWrapper from './styled';
 
-class Header extends React.Component {
-  static propTypes = {
-    themeVariant: PropTypes.string,
-    logout: PropTypes.func.isRequired,
-    setEditMode: PropTypes.func.isRequired,
-    userAuthorized: PropTypes.bool.isRequired,
-    editMode: PropTypes.bool.isRequired,
-    userName: PropTypes.string.isRequired,
-    userAdmin: PropTypes.bool.isRequired,
-    cartItemsCount: PropTypes.number.isRequired,
-  };
+const Header = ({ cartItemsCount, themeVariant, userAuthorized, userName, logout }) => (
+  <HeaderWrapper themeVariant={themeVariant}>
+    <Flex>
+      <Link to={ROUTER_PATH.main}>
+        <Logo size={ICON_SIZE.large} />
+      </Link>
+    </Flex>
+    <Flex>
+      <Time />
+      <Label
+        themeVariant={THEME_VARIANT.inverted}
+        text='30 минут доставка'
+        fontSize={FONT_SIZE.large}
+      />
+    </Flex>
+    <Flex>
+      <Phone />
+      <Link themeVariant={THEME_VARIANT.inverted} href='tel:+375333637970'>
+        +375 (33) 363-79-70
+      </Link>
+    </Flex>
+    <Flex horizontal={JUSTIFY_CONTENT.flexEnd}>
+      <Link to={ROUTER_PATH.cart}>
+        <Cart size={ICON_SIZE.large} cartItemsCount={cartItemsCount} />
+      </Link>
+      <UserInfo userName={userName} logout={logout} userAuthorized={userAuthorized} />
+    </Flex>
+  </HeaderWrapper>
+);
 
-  static defaultProps = {
-    themeVariant: THEME_VARIANT.default,
-  };
+Header.propTypes = {
+  themeVariant: PropTypes.string,
+  logout: PropTypes.func.isRequired,
+  userAuthorized: PropTypes.bool.isRequired,
+  userName: PropTypes.string.isRequired,
+  cartItemsCount: PropTypes.number.isRequired,
+};
 
-  edit = () => {
-    const { setEditMode, editMode } = this.props;
-
-    setEditMode(!editMode);
-  };
-
-  render() {
-    const {
-      cartItemsCount,
-      themeVariant,
-      userAuthorized,
-      userName,
-      userAdmin,
-      logout,
-      editMode,
-    } = this.props;
-
-    return (
-      <HeaderWrapper themeVariant={themeVariant}>
-        <Flex>
-          <Link to={ROUTER_PATH.main}>
-            <Logo width={ICON_SIZE.large} height={ICON_SIZE.large} />
-          </Link>
-        </Flex>
-        <Flex>
-          <Time />
-          <Label
-            themeVariant={THEME_VARIANT.inverted}
-            text='30 минут доставка'
-            fontSize={FONT_SIZE.large}
-          />
-        </Flex>
-        <Flex>
-          <Phone />
-          <Link themeVariant={THEME_VARIANT.inverted} href='tel:+375333637970'>
-            +375 (33) 363-79-70
-          </Link>
-        </Flex>
-        <Flex horizontal={JUSTIFY_CONTENT.flexEnd}>
-          <Link to={ROUTER_PATH.cart}>
-            <Cart size={ICON_SIZE.large} cartItemsCount={cartItemsCount} />
-          </Link>
-          <UserInfo
-            userName={userName}
-            userAdmin={userAdmin}
-            logout={logout}
-            userAuthorized={userAuthorized}
-            editMode={editMode}
-            edit={this.edit}
-          />
-        </Flex>
-      </HeaderWrapper>
-    );
-  }
-}
+Header.defaultProps = {
+  themeVariant: THEME_VARIANT.default,
+};
 
 export default Header;

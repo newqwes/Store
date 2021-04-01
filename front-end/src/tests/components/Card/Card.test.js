@@ -11,7 +11,7 @@ const setUp = props =>
   mountWithTheme(
     <Card
       item={mockProductItem}
-      editMode={false}
+      userAdmin={true}
       addToCart={() => {}}
       updateProduct={() => {}}
       {...props}

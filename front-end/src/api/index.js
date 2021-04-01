@@ -1,30 +1,34 @@
-import Axios from 'axios';
+import axios from 'axios';
 
 import { extractResponsData, getToken } from '../utils/api';
 
-const instance = Axios.create({
+axios.interceptors.request.use(config => ({
+  ...config,
   baseURL: 'http://localhost:3005/api/',
-});
+  headers: { Authorization: getToken() },
+}));
 
 export const productAPI = {
   getProductsList: async productType => {
-    const respons = await instance.get(`products?type=${productType}`);
+    const respons = await axios.get(`products?type=${productType}`);
 
     return extractResponsData(respons);
   },
 
   addProduct: async body => {
-    const respons = await instance.post('products', body, {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.post('products', body);
 
     return extractResponsData(respons);
   },
 
   updateProduct: async body => {
-    const respons = await instance.put(`products/${body.id}`, body, {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.put(`products/${body.id}`, body);
+
+    return extractResponsData(respons);
+  },
+
+  deleteProduct: async id => {
+    const respons = await axios.delete(`products/${id}`);
 
     return extractResponsData(respons);
   },
@@ -32,13 +36,13 @@ export const productAPI = {
 
 export const authAPI = {
   login: async body => {
-    const respons = await instance.post('auth/login', body);
+    const respons = await axios.post('auth/login', body);
 
     return extractResponsData(respons);
   },
 
   registration: async body => {
-    const respons = await instance.post('auth/register', body);
+    const respons = await axios.post('auth/register', body);
 
     return extractResponsData(respons);
   },
@@ -46,17 +50,13 @@ export const authAPI = {
 
 export const orderAPI = {
   sendOrder: async body => {
-    const respons = await instance.post('order', body, {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.post('order', body);
 
     return extractResponsData(respons);
   },
 
   getOrderHistory: async () => {
-    const respons = await instance.get('order', {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.get('order');
 
     return extractResponsData(respons);
   },
@@ -64,17 +64,13 @@ export const orderAPI = {
 
 export const userAPI = {
   update: async body => {
-    const respons = await instance.put('user', body, {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.put('user', body);
 
     return extractResponsData(respons);
   },
 
   delete: async () => {
-    const respons = await instance.delete('user/delete', {
-      headers: { Authorization: getToken() },
-    });
+    const respons = await axios.delete('user/delete');
 
     return extractResponsData(respons);
   },

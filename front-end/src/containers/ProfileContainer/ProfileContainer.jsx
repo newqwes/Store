@@ -8,7 +8,6 @@ import THEME_VARIANT from '../../constants/themeVariant';
 import User from './User';
 import Address from './Address';
 import OrderHistory from './OrderHistory';
-import AddProduct from './AddProduct';
 import Password from './Password';
 
 import ProfileMenu from '../../components/ProfileSection/ProfileMenu';
@@ -38,25 +37,18 @@ class ProfileContainer extends React.Component {
   clickButtonMenu = () => this.setState({ menuActive: !this.state.menuActive });
 
   render() {
-    const { themeVariant, userAuthorized, userAdmin } = this.props;
+    const { themeVariant, userAuthorized } = this.props;
     const { menuActive } = this.state;
 
     if (userAuthorized) {
       return (
         <ProfileWrapper themeVariant={themeVariant}>
-          <ProfileMenu
-            active={menuActive}
-            clickButtonMenu={this.clickButtonMenu}
-            userAdmin={userAdmin}
-          />
+          <ProfileMenu active={menuActive} clickButtonMenu={this.clickButtonMenu} />
           <ProfileContent>
             <Route path={ROUTER_PATH.profileMenu.user} component={User} />
             <Route path={ROUTER_PATH.profileMenu.address} component={Address} />
             <Route path={ROUTER_PATH.profileMenu.history} component={OrderHistory} />
             <Route path={ROUTER_PATH.password} component={Password} />
-            {userAdmin && (
-              <Route path={ROUTER_PATH.profileMenu.addProduct} component={AddProduct} />
-            )}
           </ProfileContent>
         </ProfileWrapper>
       );

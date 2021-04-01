@@ -17,6 +17,7 @@ const COLORS = {
   lightGrayishBlue: '#c9c9c9',
   lightGrayishCyan: '#f7f8f8',
   softGray: '#e4e4e4',
+  weakYellow: '#ffd2b3',
 };
 
 export default COLORS;

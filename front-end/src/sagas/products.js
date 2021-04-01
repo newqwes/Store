@@ -1,14 +1,19 @@
 import { takeEvery, put, all, call } from 'redux-saga/effects';
 
-import { ADD_PRODUCT_PENDING, GET_PRODUCTS_LIST_PENDING, UPDATE_PRODUCT_PENDING } from '../actions';
+import {
+  ADD_PRODUCT_PENDING,
+  GET_PRODUCTS_LIST_PENDING,
+  UPDATE_PRODUCT_PENDING,
+  DELETE_PRODUCT_PENDING,
+} from '../actions';
 
 import { productAPI } from '../api';
 import {
-  addProductSuccess,
   getProductsListSuccess,
   addProductFailure,
   updateProductFailure,
   getProductsList,
+  deleteProductFailure,
 } from '../actionCreators';
 
 function* getProducts({ payload }) {
@@ -19,9 +24,9 @@ function* getProducts({ payload }) {
 
 function* addProduct({ payload }) {
   try {
-    const data = yield call(productAPI.addProduct, payload);
+    yield call(productAPI.addProduct, payload);
 
-    yield put(addProductSuccess(data));
+    yield put(getProductsList(payload.type));
   } catch ({ response }) {
     yield put(addProductFailure(response.data.message));
   }
@@ -37,10 +42,21 @@ function* updateProduct({ payload }) {
   }
 }
 
+function* deleteProduct({ payload: { id, type } }) {
+  try {
+    yield call(productAPI.deleteProduct, id);
+
+    yield put(getProductsList(type));
+  } catch ({ response }) {
+    yield put(deleteProductFailure(response.data.message));
+  }
+}
+
 export default function productSaga() {
   return all([
     takeEvery(GET_PRODUCTS_LIST_PENDING, getProducts),
     takeEvery(ADD_PRODUCT_PENDING, addProduct),
     takeEvery(UPDATE_PRODUCT_PENDING, updateProduct),
+    takeEvery(DELETE_PRODUCT_PENDING, deleteProduct),
   ]);
 }

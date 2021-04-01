@@ -10,7 +10,6 @@ const setUp = props =>
       products={[mockProductItem]}
       addToCart={() => {}}
       updateProduct={() => {}}
-      editMode={false}
       {...props}
     />,
   );

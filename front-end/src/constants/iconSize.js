@@ -1,5 +1,5 @@
 const ICON_SIZE = {
-  small: 24,
+  small: 20,
   medium: 32,
   large: 42,
 };

@@ -23,11 +23,13 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
   ADD_PRODUCT_PENDING,
-  ADD_PRODUCT_SUCCESS,
   ADD_PRODUCT_FAILURE,
   UPDATE_PRODUCT_PENDING,
+  UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAILURE,
-  SET_EDIT_MODE,
+  DELETE_PRODUCT_PENDING,
+  DELETE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_FAILURE,
 } from '../actions';
 
 export const getProductsList = type => ({
@@ -146,19 +148,9 @@ export const addProduct = productData => ({
   payload: productData,
 });
 
-export const addProductSuccess = productData => ({
-  type: ADD_PRODUCT_SUCCESS,
-  payload: productData,
-});
-
 export const addProductFailure = error => ({
   type: ADD_PRODUCT_FAILURE,
   payload: error,
-});
-
-export const setEditMode = payload => ({
-  type: SET_EDIT_MODE,
-  payload,
 });
 
 export const updateProduct = productData => ({
@@ -166,7 +158,27 @@ export const updateProduct = productData => ({
   payload: productData,
 });
 
+export const updateProductSuccess = productData => ({
+  type: UPDATE_PRODUCT_SUCCESS,
+  payload: productData,
+});
+
 export const updateProductFailure = error => ({
   type: UPDATE_PRODUCT_FAILURE,
+  payload: error,
+});
+
+export const deleteProduct = id => ({
+  type: DELETE_PRODUCT_PENDING,
+  payload: id,
+});
+
+export const deleteProductSuccess = id => ({
+  type: DELETE_PRODUCT_SUCCESS,
+  payload: id,
+});
+
+export const deleteProductFailure = error => ({
+  type: DELETE_PRODUCT_FAILURE,
   payload: error,
 });

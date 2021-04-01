@@ -10,7 +10,7 @@ import THEME_VARIANT from '../../../constants/themeVariant';
 
 import { ProfileMenuWrapper, HamburgerWrapper } from './styled';
 
-const ProfileMenu = ({ themeVariant, active, clickButtonMenu, userAdmin }) => (
+const ProfileMenu = ({ themeVariant, active, clickButtonMenu }) => (
   <ProfileMenuWrapper themeVariant={themeVariant} active={active}>
     <HamburgerWrapper onClick={clickButtonMenu} themeVariant={themeVariant}>
       {active ? <Сross /> : <Hamburger />}
@@ -19,9 +19,6 @@ const ProfileMenu = ({ themeVariant, active, clickButtonMenu, userAdmin }) => (
       <NavbarItem title='Профиль' link={ROUTER_PATH.profileMenu.user} />
       <NavbarItem title='Адрес' link={ROUTER_PATH.profileMenu.address} />
       <NavbarItem title='История' link={ROUTER_PATH.profileMenu.history} />
-      {userAdmin && (
-        <NavbarItem title='Добавить продукт' link={ROUTER_PATH.profileMenu.addProduct} />
-      )}
     </ul>
   </ProfileMenuWrapper>
 );
@@ -30,7 +27,6 @@ ProfileMenu.propTypes = {
   themeVariant: PropTypes.string,
   clickButtonMenu: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
-  userAdmin: PropTypes.bool.isRequired,
 };
 
 ProfileMenu.defaultProps = {

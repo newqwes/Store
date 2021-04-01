@@ -76,7 +76,7 @@ const light = {
         inverted: COLORS.softYellow,
       },
       hover: {
-        default: COLORS.gray,
+        default: COLORS.weakYellow,
         inverted: COLORS.softYellow,
       },
       color: {

@@ -41,8 +41,7 @@ class SelectField extends React.Component {
           onBlur={onBlur}
           onChange={onChange}
           placeholder={placeholder}
-          defaultValue={defaultValue}
-        >
+          defaultValue={defaultValue}>
           {children}
         </select>
       </FieldStyle>

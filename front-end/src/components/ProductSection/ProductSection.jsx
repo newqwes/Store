@@ -12,14 +12,15 @@ import { ProductWrapper, ProductContent } from './styled';
 
 class ProductSection extends React.Component {
   static propTypes = {
-    products: productsType.isRequired,
     themeVariant: PropTypes.string,
+    userAdmin: PropTypes.bool.isRequired,
+    products: productsType.isRequired,
     getProductsList: PropTypes.func.isRequired,
-    editMode: PropTypes.bool.isRequired,
     addToCart: PropTypes.func.isRequired,
     location: locationRouterType.isRequired,
     updateProduct: PropTypes.func.isRequired,
     addProduct: PropTypes.func.isRequired,
+    deleteProduct: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -27,7 +28,6 @@ class ProductSection extends React.Component {
   };
 
   state = {
-    category: '',
     showPopup: false,
   };
 
@@ -35,10 +35,9 @@ class ProductSection extends React.Component {
 
   setQueryTypeToState = () => {
     const { search } = this.props.location;
-    const category = new URLSearchParams(search).get('type');
+    const type = new URLSearchParams(search).get('type');
 
-    this.setState({ category });
-    this.props.getProductsList(category);
+    this.props.getProductsList(type);
   };
 
   componentDidMount() {
@@ -52,8 +51,16 @@ class ProductSection extends React.Component {
   }
 
   render() {
-    const { products, themeVariant, addToCart, editMode, updateProduct, addProduct } = this.props;
-    const { showPopup, category } = this.state;
+    const {
+      products,
+      themeVariant,
+      addToCart,
+      updateProduct,
+      addProduct,
+      deleteProduct,
+      userAdmin,
+    } = this.props;
+    const { showPopup } = this.state;
 
     return (
       <ProductWrapper themeVariant={themeVariant}>
@@ -61,10 +68,10 @@ class ProductSection extends React.Component {
           <ProductList
             products={products}
             addToCart={addToCart}
-            category={category}
-            editMode={editMode}
             showPopup={showPopup}
+            userAdmin={userAdmin}
             addProduct={addProduct}
+            deleteProduct={deleteProduct}
             updateProduct={updateProduct}
             togglePopup={this.togglePopup}
           />
