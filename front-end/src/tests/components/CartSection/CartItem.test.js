@@ -9,11 +9,11 @@ import {
 } from '../../../components/CartSection/CartItem/styled';
 
 import CartItem from '../../../components/CartSection/CartItem';
-import { mockProductItem } from '../../helpers/mocks';
+import mockProductItem from '../../helpers/mocks';
 
-const setUp = props =>
+const setUp = (props) =>
   mountWithTheme(
-    <CartItem addToCart={() => {}} removeFromCart={() => {}} item={mockProductItem} {...props} />,
+    <CartItem addToCart={() => {}} removeFromCart={() => {}} item={mockProductItem} {...props} />
   );
 
 describe('snapshot CartItem', () => {

@@ -19,17 +19,12 @@ import {
   GET_ORDER_HISTORY_PENDING,
   GET_ORDER_HISTORY_SUCCESS,
   GET_ORDER_HISTORY_FAILURE,
-  DELETE_USER_PENDING,
-  DELETE_USER_SUCCESS,
-  DELETE_USER_FAILURE,
-  ADD_PRODUCT_PENDING,
-  ADD_PRODUCT_FAILURE,
   UPDATE_PRODUCT_PENDING,
-  UPDATE_PRODUCT_SUCCESS,
   UPDATE_PRODUCT_FAILURE,
   DELETE_PRODUCT_PENDING,
-  DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAILURE,
+  UPDATE_PRODUCT_SUCCESS,
+  DELETE_PRODUCT_SUCCESS,
 } from '../actions';
 
 export const getProductsList = type => ({
@@ -105,20 +100,6 @@ export const updateUserFailure = error => ({
   payload: error,
 });
 
-export const deleteUser = () => ({
-  type: DELETE_USER_PENDING,
-});
-
-export const deleteUserSuccess = userid => ({
-  type: DELETE_USER_SUCCESS,
-  payload: userid,
-});
-
-export const deleteUserFailure = error => ({
-  type: DELETE_USER_FAILURE,
-  payload: error,
-});
-
 export const getUserDataSuccess = userData => ({
   type: GET_USER_DATA_SUCCESS,
   payload: userData,
@@ -140,16 +121,6 @@ export const getOrderHistorySuccess = userHistory => ({
 
 export const getOrderHistoryFailure = error => ({
   type: GET_ORDER_HISTORY_FAILURE,
-  payload: error,
-});
-
-export const addProduct = productData => ({
-  type: ADD_PRODUCT_PENDING,
-  payload: productData,
-});
-
-export const addProductFailure = error => ({
-  type: ADD_PRODUCT_FAILURE,
   payload: error,
 });
 

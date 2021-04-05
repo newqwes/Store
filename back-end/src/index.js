@@ -29,7 +29,7 @@ app.use('/api/products', productsRoute);
 app.use('/api/order', orderRoute);
 app.use('/api/user', userRoute);
 
-const port = process.env.PORT;
+const port = process.env.SERVER_PORT;
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 

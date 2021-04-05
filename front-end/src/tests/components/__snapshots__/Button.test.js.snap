@@ -2,8 +2,8 @@
 
 exports[`snapshot Button snapshot 1`] = `
 <button
-  className="sc-bdfBwQ iAaGcA"
-  onClick={[MockFunction]}
+  className="sc-bdfBwQ cEQMOM"
+  onClick={[Function]}
 >
   test text
 </button>

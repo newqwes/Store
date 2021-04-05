@@ -8,7 +8,6 @@ import THEME_VARIANT from '../../constants/themeVariant';
 import User from './User';
 import Address from './Address';
 import OrderHistory from './OrderHistory';
-import Password from './Password';
 
 import ProfileMenu from '../../components/ProfileSection/ProfileMenu';
 
@@ -19,7 +18,6 @@ class ProfileContainer extends React.Component {
     themeVariant: PropTypes.string,
     userAuthorized: PropTypes.bool.isRequired,
     getOrderHistory: PropTypes.func.isRequired,
-    userAdmin: PropTypes.bool.isRequired,
   };
 
   static defaultProps = {
@@ -48,7 +46,6 @@ class ProfileContainer extends React.Component {
             <Route path={ROUTER_PATH.profileMenu.user} component={User} />
             <Route path={ROUTER_PATH.profileMenu.address} component={Address} />
             <Route path={ROUTER_PATH.profileMenu.history} component={OrderHistory} />
-            <Route path={ROUTER_PATH.password} component={Password} />
           </ProfileContent>
         </ProfileWrapper>
       );

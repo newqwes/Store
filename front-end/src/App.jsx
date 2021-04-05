@@ -17,11 +17,6 @@ import ProfileContainer from './containers/ProfileContainer';
 
 import { AppWrapper } from './style/AppWrapper';
 
-/**
- * Component is described here.
- *
- * @example ./extra.examples.md
- */
 const App = () => (
   <AppWrapper>
     <HeaderContainer />

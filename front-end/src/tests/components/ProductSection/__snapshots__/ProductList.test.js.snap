@@ -2,13 +2,13 @@
 
 exports[`snapshot ProductList snapshot 1`] = `
 <div
-  className="sc-kfzAmx gRINki"
+  className="sc-fubCfw fZwJXC"
 >
   <div
-    className="sc-dIUggk dEKCvV"
+    className="sc-gKsewC mHKxT"
   >
     <div
-      className="sc-fodVxV dRTXAo"
+      className="sc-bdfBwQ rXYsm"
     >
       <img
         alt="Pizza"
@@ -16,36 +16,36 @@ exports[`snapshot ProductList snapshot 1`] = `
       />
     </div>
     <div
-      className="sc-dmlrTW bXNNpj"
+      className="sc-iBPRYJ jQRuul"
     >
       <span
-        className="sc-gsTCUz cZLZBL"
-        fontSize={20}
-        fontWeight={400}
+        className="sc-gsTCUz cakImO"
+        fontSize={19}
+        fontWeight={500}
       >
         Pizza
       </span>
       <span
-        className="sc-gsTCUz sc-hHftDr cEVujU khptGB"
+        className="sc-gsTCUz bcektt"
         fontSize={12}
         fontWeight={400}
       >
         none description
       </span>
       <div
-        className="sc-bdfBwQ eRRZAP"
+        className="sc-dlfnbm gnOvZw"
         direction="row"
       >
         <span
-          className="sc-idOhPF cCpfHR"
-          fontSize={20}
-          fontWeight={400}
+          className="sc-jSgupP dMmZuW"
+          fontSize={12}
+          fontWeight={500}
         >
           24
           руб.
         </span>
         <select
-          className="sc-fFubgz dBrZrf"
+          className="sc-hKgILt dUcerc"
           onChange={[Function]}
         >
           <option
@@ -58,10 +58,10 @@ exports[`snapshot ProductList snapshot 1`] = `
           </option>
         </select>
         <button
-          className="sc-jSgupP fNTAJX"
+          className="sc-eCssSg hYdMsO"
           onClick={[Function]}
         >
-          Выбрать
+          В корзину
         </button>
       </div>
     </div>

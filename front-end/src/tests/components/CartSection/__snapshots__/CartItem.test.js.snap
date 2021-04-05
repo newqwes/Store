@@ -2,10 +2,10 @@
 
 exports[`snapshot CartItem snapshot 1`] = `
 <div
-  className="sc-bdfBwQ jjMHhO"
+  className="sc-bdfBwQ irBXUF"
 >
   <div
-    className="sc-eCssSg hzpjg"
+    className="sc-eCssSg bFyEms"
     direction="row"
   >
     <div
@@ -15,14 +15,14 @@ exports[`snapshot CartItem snapshot 1`] = `
       className="sc-dlfnbm rDTbG"
     >
       <span
-        className="sc-jSgupP kzEUNP"
-        fontSize={20}
-        fontWeight={700}
+        className="sc-jSgupP chkdAN"
+        fontSize={19}
+        fontWeight={500}
       >
         Pizza
       </span>
       <span
-        className="sc-jSgupP ECacj"
+        className="sc-jSgupP hyMFLF"
         fontSize={14}
         fontWeight={400}
       >
@@ -33,11 +33,11 @@ exports[`snapshot CartItem snapshot 1`] = `
       className="sc-hKgILt iFSOwF"
     >
       <div
-        className="sc-eCssSg kkLeVS"
+        className="sc-eCssSg kKWOIi"
         direction="row"
       >
         <span
-          className="sc-iBPRYJ GJsBc"
+          className="sc-iBPRYJ dRUKeg"
           fontSize={14}
           fontWeight={400}
         >
@@ -46,11 +46,11 @@ exports[`snapshot CartItem snapshot 1`] = `
         </span>
       </div>
       <div
-        className="sc-eCssSg kkLeVS"
+        className="sc-eCssSg kKWOIi"
         direction="row"
       >
         <span
-          className="sc-iBPRYJ GJsBc"
+          className="sc-iBPRYJ dRUKeg"
           fontSize={14}
           fontWeight={400}
         >
@@ -59,22 +59,22 @@ exports[`snapshot CartItem snapshot 1`] = `
         </span>
       </div>
       <div
-        className="sc-eCssSg kkLeVS"
+        className="sc-eCssSg kKWOIi"
         direction="row"
       >
         <button
-          className="sc-gKsewC bUtprK"
+          className="sc-gKsewC gLuNHi"
           onClick={[Function]}
         >
           -
         </button>
         <span
-          className="sc-jSgupP ECacj"
+          className="sc-jSgupP hyMFLF"
           fontSize={14}
           fontWeight={400}
         />
         <button
-          className="sc-gKsewC bUtprK"
+          className="sc-gKsewC gLuNHi"
           onClick={[Function]}
         >
           +
